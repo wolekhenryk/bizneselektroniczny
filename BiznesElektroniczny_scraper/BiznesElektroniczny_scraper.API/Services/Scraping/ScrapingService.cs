@@ -1,25 +1,22 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using BiznesElektroniczny_scraper.API.Models;
 using Newtonsoft.Json;
 using PuppeteerSharp;
 
 namespace BiznesElektroniczny_scraper.API.Services.Scraping;
 
-public class ScrapingService {
-    private const string JsonPath =
-        @"C:\Users\henry\source\repos\BiznesElektroniczny_scraper\BiznesElektroniczny_scraper.API\Serialization\products.json";
+public class ScrapingService(HttpClient httpClient, IConfiguration configuration) {
+    private readonly string _jsonPath = configuration["Paths:JsonPath"]!;
+    private readonly string _imgDirectoryPath = configuration["Paths:ImgDirectoryPath"]!;
+    private readonly string _browserPath = configuration["Paths:BrowserPath"]!;
+
+    private IBrowser _browser;
+
     public async Task ScrapeAsync() {
         await PrepareAsync();
 
         try {
-            await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions {
-                Headless = true,
-                ExecutablePath =
-                    @"C:\Users\henry\source\repos\BiznesElektroniczny_scraper\BiznesElektroniczny_scraper.API\bin\Debug\net8.0\Chrome\Win64-130.0.6723.58\chrome-win64\chrome.exe"
-            });
-
-            await using var page = await browser.NewPageAsync();
+            await using var page = await _browser.NewPageAsync();
 
             await page.GoToAsync("https://www.atomcomics.pl/kategoria/bohaterowie/komiksy-avengers");
 
@@ -50,28 +47,94 @@ public class ScrapingService {
                 const string pattern = @"(\d+,\d+)";
                 var price = decimal.Parse(Regex.Match(priceText, pattern).Value.Replace(',', '.'));
 
-                products.Add(new Product {
+                var productUrlElement = await productElement.QuerySelectorAsync("a.prodname");
+                var productUrl = await productUrlElement.EvaluateFunctionAsync<string>("e => e.href");
+
+                var product = new Product {
                     Title = titleName,
                     Manufacturer = manufacturerName,
                     CategoryName = categoryName,
                     Price = price
-                });
+                };
+
+                await GetDetailsAsync(productUrl, product);
+
+                products.Add(product);
             }
 
-            await File.WriteAllTextAsync(JsonPath, JsonConvert.SerializeObject(products, Formatting.Indented));
+            await SerializeToJsonAsync(products);
         }
         catch (Exception e) {
             Console.WriteLine(e);
         }
+        finally {
+            await _browser.CloseAsync();
+        }
     }
 
-    private static async Task PrepareAsync() {
+    private async Task SerializeToJsonAsync(List<Product> products) =>
+        await File.WriteAllTextAsync(_jsonPath, JsonConvert.SerializeObject(products, Formatting.Indented));
+
+    private async Task GetDetailsAsync(string productUrl, Product product) {
+        await using var page = await _browser.NewPageAsync();
+
+        await page.GoToAsync(productUrl);
+
+        await page.WaitForSelectorAsync("div.row.code.codeisbn span");
+        var isbnElement = await page.QuerySelectorAsync("div.row.code.codeisbn span");
+
+        var isbn = await isbnElement.EvaluateFunctionAsync<string>("e => e.innerText");
+        product.Isbn = isbn;
+
+        var descriptionElement = await page.QuerySelectorAsync("div.product-modules");
+        var descriptionParagraphs = await descriptionElement.QuerySelectorAllAsync("p");
+
+        var descriptionText = descriptionParagraphs.Length == 0
+            ? "No description"
+            : await descriptionParagraphs.First().EvaluateFunctionAsync<string>("e => e.innerText");
+        product.Description = descriptionText;
+
+        var photoElement = await page.QuerySelectorAsync("div.mainimg.productdetailsimgsize.row a");
+        var photoUrl = await photoElement.EvaluateFunctionAsync<string>("e => e.href");
+
+        var imgPath = await SaveImgAsync(photoUrl);
+        product.ImgPath = imgPath;
+    }
+
+    private async Task<string> SaveImgAsync(string photoUrl) {
+        try {
+            var fileName = Path.GetFileName(photoUrl);
+            var filePath = Path.Combine(_imgDirectoryPath, fileName);
+
+            var response = await httpClient.GetStreamAsync(photoUrl);
+
+            await using var fileStream = new FileStream(filePath, FileMode.Create);
+            await response.CopyToAsync(fileStream);
+
+            return filePath;
+        }
+        catch (Exception e) {
+            Console.WriteLine(e);
+            return "No image";
+        }
+    }
+
+    private async Task PrepareAsync() {
         try {
             var browserFetcher = Puppeteer.CreateBrowserFetcher(new BrowserFetcherOptions {
                 Path = null
             });
 
             await browserFetcher.DownloadAsync(BrowserTag.Stable);
+
+            _browser = await Puppeteer.LaunchAsync(new LaunchOptions {
+                Headless = false,
+                ExecutablePath = _browserPath,
+                DefaultViewport = new ViewPortOptions {
+                    Width = 1920,
+                    Height = 1080
+                }
+            });
         }
         catch (Exception e) {
             Console.WriteLine(e);
