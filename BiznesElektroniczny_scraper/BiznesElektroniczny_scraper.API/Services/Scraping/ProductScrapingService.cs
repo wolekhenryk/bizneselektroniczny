@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using BiznesElektroniczny_scraper.API.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using PuppeteerSharp;
 
@@ -9,61 +10,40 @@ public class ProductScrapingService(
     HttpClient httpClient,
     IConfiguration configuration,
     ILogger<ProductScrapingService> logger) {
-
     private readonly string _jsonPath = configuration["Paths:ProductsJsonPath"]!;
     private readonly string _imgDirectoryPath = configuration["Paths:ImgDirectoryPath"]!;
     private readonly string _browserPath = configuration["Paths:BrowserPath"]!;
 
     private IBrowser _browser = null!;
 
-    public async Task ScrapeAsync() {
+    public async Task ScrapeAsync(string baseUri = "https://www.atomcomics.pl/kategoria/bohaterowie") {
         await PrepareAsync();
 
         try {
             await using var page = await _browser.NewPageAsync();
 
-            await page.GoToAsync("https://www.atomcomics.pl/kategoria/bohaterowie/komiksy-avengers");
-
-            await page.WaitForSelectorAsync(".products.viewdesc");
-            await page.WaitForSelectorAsync(".oneperrow.f-row.product");
-
-            var allProductDivs = await page.QuerySelectorAllAsync(".oneperrow.f-row.product");
-
             List<Product> products = [];
 
-            var categoryNameElement = await page.QuerySelectorAsync("h1.category-name");
-            var categoryName = await categoryNameElement.EvaluateFunctionAsync<string>("e => e.innerText");
+            await page.GoToAsync(baseUri);
 
-            foreach (var productElement in allProductDivs) {
-                await productElement.WaitForSelectorAsync(".product-details-list");
+            // Determine the amount of pages to scrape
 
-                var titleNameElement = await productElement.QuerySelectorAsync("span.productname");
-                var manufacturerNameElement = await productElement.QuerySelectorAsync("span.productmanu");
+            await page.WaitForSelectorAsync("div.innerbox .floatcenterwrap ul li");
+            var paginationElements = await page.QuerySelectorAllAsync("div.innerbox .floatcenterwrap ul li a");
 
-                var titleName = await titleNameElement.EvaluateFunctionAsync<string>("e => e.innerText");
-                var manufacturerName = await manufacturerNameElement.EvaluateFunctionAsync<string>("e => e.innerText");
+            // Get the one element before the last one, because the last one is the next page button
+            var lastPageElement = paginationElements[^2];
 
-                var outerPriceElement = await productElement.QuerySelectorAsync("div.price");
-                var innerPriceElement = await outerPriceElement.QuerySelectorAsync("em");
+            var amountOfPages = await lastPageElement.EvaluateFunctionAsync<int>("e => parseInt(e.innerText)");
 
-                var priceText = await innerPriceElement.EvaluateFunctionAsync<string>("e => e.innerText");
-
-                const string pattern = @"(\d+,\d+)";
-                var price = decimal.Parse(Regex.Match(priceText, pattern).Value.Replace(',', '.'));
-
-                var productUrlElement = await productElement.QuerySelectorAsync("a.prodname");
-                var productUrl = await productUrlElement.EvaluateFunctionAsync<string>("e => e.href");
-
-                var product = new Product {
-                    Title = titleName,
-                    Manufacturer = manufacturerName,
-                    CategoryName = categoryName,
-                    Price = price
-                };
-
-                await GetDetailsAsync(productUrl, product);
-
-                products.Add(product);
+            for (var pageNumber = 1; pageNumber <= amountOfPages; pageNumber++) {
+                if (pageNumber == 1) {
+                    await ScrapePage(baseUri, products, page);
+                }
+                else {
+                    var uri = $"{baseUri}/{pageNumber}";
+                    await ScrapePage(uri, products, page);
+                }
             }
 
             await SerializeToJsonAsync(products);
@@ -73,6 +53,50 @@ public class ProductScrapingService(
         }
         finally {
             await _browser.CloseAsync();
+        }
+    }
+
+    private async Task ScrapePage(string uri, ICollection<Product> products, IPage page) {
+        await page.GoToAsync(uri);
+
+        await page.WaitForSelectorAsync(".products.viewdesc");
+        await page.WaitForSelectorAsync(".oneperrow.f-row.product");
+
+        var allProductDivs = await page.QuerySelectorAllAsync(".oneperrow.f-row.product");
+
+        var categoryNameElement = await page.QuerySelectorAsync("h1.category-name");
+        var categoryName = await categoryNameElement.EvaluateFunctionAsync<string>("e => e.innerText");
+
+        foreach (var productElement in allProductDivs) {
+            await productElement.WaitForSelectorAsync(".product-details-list");
+
+            var titleNameElement = await productElement.QuerySelectorAsync("span.productname");
+            var manufacturerNameElement = await productElement.QuerySelectorAsync("span.productmanu");
+
+            var titleName = await titleNameElement.EvaluateFunctionAsync<string>("e => e.innerText");
+            var manufacturerName = await manufacturerNameElement.EvaluateFunctionAsync<string>("e => e.innerText");
+
+            var outerPriceElement = await productElement.QuerySelectorAsync("div.price");
+            var innerPriceElement = await outerPriceElement.QuerySelectorAsync("em");
+
+            var priceText = await innerPriceElement.EvaluateFunctionAsync<string>("e => e.innerText");
+
+            const string pattern = @"(\d+,\d+)";
+            var price = decimal.Parse(Regex.Match(priceText, pattern).Value.Replace(',', '.'));
+
+            var productUrlElement = await productElement.QuerySelectorAsync("a.prodname");
+            var productUrl = await productUrlElement.EvaluateFunctionAsync<string>("e => e.href");
+
+            var product = new Product {
+                Title = titleName,
+                Manufacturer = manufacturerName,
+                CategoryName = categoryName,
+                Price = price
+            };
+
+            await GetDetailsAsync(productUrl, product);
+
+            products.Add(product);
         }
     }
 
@@ -99,10 +123,12 @@ public class ProductScrapingService(
         product.Description = descriptionText;
 
         var photoElement = await page.QuerySelectorAsync("div.mainimg.productdetailsimgsize.row a");
-        var photoUrl = await photoElement.EvaluateFunctionAsync<string>("e => e.href");
+        if (photoElement is not null) {
+            var photoUrl = await photoElement.EvaluateFunctionAsync<string>("e => e.href");
 
-        var imgPath = await SaveImgAsync(photoUrl);
-        product.ImgPath = imgPath;
+            var imgPath = await SaveImgAsync(photoUrl);
+            product.ImgPath = imgPath;
+        }
     }
 
     private async Task<string> SaveImgAsync(string photoUrl) {

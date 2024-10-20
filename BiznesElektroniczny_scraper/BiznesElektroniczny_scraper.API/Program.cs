@@ -46,7 +46,7 @@ app.UseHangfireDashboard();
 
 RecurringJob.AddOrUpdate<ProductScrapingService>(
     "daily-product-scraping",
-    service => service.ScrapeAsync(), 
+    service => service.ScrapeAsync("https://www.atomcomics.pl/kategoria/mangi-i-nowelki/danmei"), 
     Cron.Daily);
 
 RecurringJob.AddOrUpdate<CategoryScrapingService>(
