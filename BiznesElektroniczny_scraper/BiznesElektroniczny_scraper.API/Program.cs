@@ -1,7 +1,16 @@
-using BiznesElektroniczny_scraper.API.Services.Background;
+using BiznesElektroniczny_scraper.API.Services;
 using BiznesElektroniczny_scraper.API.Services.Scraping;
+using Hangfire;
+using Hangfire.MemoryStorage;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console() // Ensure this line now works
+    .WriteTo.File("Logs/api.log", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 // Add services to the container.
 
@@ -10,19 +19,41 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<ProductsRetrieverService>();
+
 builder.Services.AddHttpClient();
 
-builder.Services.AddSingleton<ScrapingService>();
+builder.Services.AddScoped<ScrapingService>();
 
-builder.Services.AddHostedService<ScrapingHandler>();
+builder.Services.AddHangfire(config => config.UseSerilogLogProvider());
+
+// Configure the Hangfire service for background tasks
+builder.Services.AddHangfire(configuration => configuration
+    .UseSimpleAssemblyNameTypeSerializer()
+    .UseRecommendedSerializerSettings()
+    .UseMemoryStorage());
+
+// Configure the Hangfire server
+builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Use the dashboard with the default options
+app.UseHangfireDashboard();
+
+// Add a recurring job to scrape the website every 24 hours
+
+RecurringJob.AddOrUpdate<ScrapingService>(
+    "daily-scraping",
+    service => service.ScrapeAsync(), 
+    Cron.Daily);
+
+app.UseSwagger();
+app.UseSwaggerUI(options => {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
+    options.RoutePrefix = string.Empty;
+});
+
 
 app.UseHttpsRedirection();
 
