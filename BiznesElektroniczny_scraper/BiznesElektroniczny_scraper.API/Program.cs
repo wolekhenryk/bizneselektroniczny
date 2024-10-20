@@ -19,11 +19,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<ProductsRetrieverService>();
-
 builder.Services.AddHttpClient();
 
-builder.Services.AddScoped<ScrapingService>();
+builder.Services.AddScoped<ProductsRetrieverService>();
+
+builder.Services.AddScoped<ProductScrapingService>();
+builder.Services.AddScoped<CategoryScrapingService>();
 
 builder.Services.AddHangfire(config => config.UseSerilogLogProvider());
 
@@ -43,10 +44,16 @@ app.UseHangfireDashboard();
 
 // Add a recurring job to scrape the website every 24 hours
 
-RecurringJob.AddOrUpdate<ScrapingService>(
-    "daily-scraping",
+RecurringJob.AddOrUpdate<ProductScrapingService>(
+    "daily-product-scraping",
     service => service.ScrapeAsync(), 
     Cron.Daily);
+
+RecurringJob.AddOrUpdate<CategoryScrapingService>(
+    "daily-category-scraping",
+    service => service.ScrapeAsync(),
+    Cron.Daily);
+
 
 app.UseSwagger();
 app.UseSwaggerUI(options => {

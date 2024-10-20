@@ -5,12 +5,16 @@ using PuppeteerSharp;
 
 namespace BiznesElektroniczny_scraper.API.Services.Scraping;
 
-public class ScrapingService(HttpClient httpClient, IConfiguration configuration) {
-    private readonly string _jsonPath = configuration["Paths:JsonPath"]!;
+public class ProductScrapingService(
+    HttpClient httpClient,
+    IConfiguration configuration,
+    ILogger<ProductScrapingService> logger) {
+
+    private readonly string _jsonPath = configuration["Paths:ProductsJsonPath"]!;
     private readonly string _imgDirectoryPath = configuration["Paths:ImgDirectoryPath"]!;
     private readonly string _browserPath = configuration["Paths:BrowserPath"]!;
 
-    private IBrowser _browser;
+    private IBrowser _browser = null!;
 
     public async Task ScrapeAsync() {
         await PrepareAsync();
@@ -65,7 +69,7 @@ public class ScrapingService(HttpClient httpClient, IConfiguration configuration
             await SerializeToJsonAsync(products);
         }
         catch (Exception e) {
-            Console.WriteLine(e);
+            logger.LogError(e, "Error while scraping products");
         }
         finally {
             await _browser.CloseAsync();
@@ -114,7 +118,7 @@ public class ScrapingService(HttpClient httpClient, IConfiguration configuration
             return filePath;
         }
         catch (Exception e) {
-            Console.WriteLine(e);
+            logger.LogError(e, "Error while saving image");
             return "No image";
         }
     }
@@ -137,7 +141,7 @@ public class ScrapingService(HttpClient httpClient, IConfiguration configuration
             });
         }
         catch (Exception e) {
-            Console.WriteLine(e);
+            logger.LogError(e, "Error while preparing browser");
         }
     }
 }
