@@ -22,6 +22,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
 
 builder.Services.AddScoped<ProductsRetrieverService>();
+builder.Services.AddScoped<CategoryRetrieverService>();
 
 builder.Services.AddScoped<ProductScrapingService>();
 builder.Services.AddScoped<CategoryScrapingService>();
