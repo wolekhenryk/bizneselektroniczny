@@ -16,7 +16,7 @@ public class ProductScrapingService(
 
     private IBrowser _browser = null!;
 
-    public async Task ScrapeAsync(string baseUri = "https://www.atomcomics.pl/kategoria/bohaterowie") {
+    public async Task ScrapeAsync(string pageUrl) {
         await PrepareAsync();
 
         try {
@@ -24,7 +24,7 @@ public class ProductScrapingService(
 
             List<Product> products = [];
 
-            await page.GoToAsync(baseUri);
+            await page.GoToAsync(pageUrl);
 
             // Determine the amount of pages to scrape
 
@@ -38,10 +38,10 @@ public class ProductScrapingService(
 
             for (var pageNumber = 1; pageNumber <= amountOfPages; pageNumber++) {
                 if (pageNumber == 1) {
-                    await ScrapePage(baseUri, products, page);
+                    await ScrapePage(pageUrl, products, page);
                 }
                 else {
-                    var uri = $"{baseUri}/{pageNumber}";
+                    var uri = $"{pageUrl}/{pageNumber}";
                     await ScrapePage(uri, products, page);
                 }
             }
