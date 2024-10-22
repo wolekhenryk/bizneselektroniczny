@@ -6,7 +6,6 @@ namespace BiznesElektroniczny_scraper.API.Services.Scraping;
 
 public class CategoryScrapingService(IConfiguration configuration, ILogger<CategoryScrapingService> logger) {
     private readonly string _categoriesJsonPath = configuration["Paths:CategoriesJsonPath"]!;
-    private readonly string _imgDirectoryPath = configuration["Paths:ImgDirectoryPath"]!;
     private readonly string _browserPath = configuration["Paths:BrowserPath"]!;
 
     private IBrowser _browser = null!;
