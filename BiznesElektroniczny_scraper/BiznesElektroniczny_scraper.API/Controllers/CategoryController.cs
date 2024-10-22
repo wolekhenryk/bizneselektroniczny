@@ -9,7 +9,7 @@ namespace BiznesElektroniczny_scraper.API.Controllers;
 [ApiController]
 public class CategoryController(
     CategoryRetrieverService categoryRetrieverService,
-    CategoryScrapingService categoryScrapingService) : ControllerBase {
+    CategoryScrapingService categoryScrapingService, ILogger<CategoryController> logger) : ControllerBase {
     [HttpGet]
     public async Task<IActionResult> GetAllCategories() => Ok(await categoryRetrieverService.GetAllCategories());
 
