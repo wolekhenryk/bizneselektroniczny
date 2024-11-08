@@ -11,9 +11,14 @@ public class ProductController(
     ProductsRetrieverService productsRetrieverService,
     ProductScrapingService productScrapingService) : ControllerBase {
     [HttpGet]
-    public async Task<IActionResult> GetAllProducts() => Ok(await productsRetrieverService.GetAllProducts());
+    public async Task<IActionResult> GetAllProducts() =>
+        Ok((await productsRetrieverService.GetAllProducts()).Count);
 
     [HttpPost("scrape")]
     public IActionResult ScrapeProducts([FromBody] string url) =>
         Ok(BackgroundJob.Enqueue(() => productScrapingService.ScrapeAsync(url)));
+
+    [HttpGet("category-tree")]
+    public async Task<IActionResult> GetCategoryTree() =>
+        Ok(await productsRetrieverService.CreateTree());
 }

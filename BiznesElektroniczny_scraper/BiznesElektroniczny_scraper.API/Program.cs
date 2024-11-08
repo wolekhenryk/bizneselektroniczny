@@ -45,9 +45,11 @@ app.UseHangfireDashboard();
 
 // Add a recurring job to scrape the website every 24 hours
 
+var links = builder.Configuration.GetSection("Links").Get<string[]>() ?? [];
+
 RecurringJob.AddOrUpdate<ProductScrapingService>(
     "daily-product-scraping",
-    service => service.ScrapeAsync("https://www.atomcomics.pl/kategoria/mangi-i-nowelki/danmei"), 
+    service => service.ScrapeAsync(links), 
     Cron.Daily);
 
 RecurringJob.AddOrUpdate<CategoryScrapingService>(
