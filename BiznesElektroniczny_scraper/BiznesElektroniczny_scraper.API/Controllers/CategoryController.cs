@@ -15,4 +15,7 @@ public class CategoryController(
 
     [HttpPost("scrape")]
     public IActionResult ScrapeCategories() => Ok(BackgroundJob.Enqueue(() => categoryScrapingService.ScrapeAsync()));
+
+    [HttpGet("flat-categories")]
+    public async Task<IActionResult> GetFlatCategories() => Ok(await categoryRetrieverService.GetFlatCategories());
 }
