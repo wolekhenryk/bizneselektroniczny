@@ -45,7 +45,8 @@ public class ProductScrapingService(
 
                 var amountOfPages = await lastPageElement.EvaluateFunctionAsync<int>("e => parseInt(e.innerText)");
 
-                amountOfPages = amountOfPages > 10 ? 10 : amountOfPages;
+                //amountOfPages = amountOfPages > 10 ? 10 : amountOfPages;
+                amountOfPages = 1;
 
                 for (var pageNumber = 1; pageNumber <= amountOfPages; pageNumber++) {
                     if (pageNumber == 1) {
