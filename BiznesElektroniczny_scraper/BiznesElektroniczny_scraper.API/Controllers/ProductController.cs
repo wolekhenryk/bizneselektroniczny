@@ -12,7 +12,7 @@ public class ProductController(
     ProductScrapingService productScrapingService) : ControllerBase {
     [HttpGet]
     public async Task<IActionResult> GetAllProducts() =>
-        Ok((await productsRetrieverService.GetAllProducts()).Count);
+        Ok(await productsRetrieverService.GetAllProducts());
 
     [HttpPost("scrape")]
     public IActionResult ScrapeProducts([FromBody] string url) =>
