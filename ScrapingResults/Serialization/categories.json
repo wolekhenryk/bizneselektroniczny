@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "bohaterowie",
+    "Subcategories": [
+      "komiksy-deadpool",
+      "komiksy-hulk"
+    ]
+  },
+  {
+    "Name": "wydania-zbiorcze",
+    "Subcategories": [
+      "wydania-zbiorcze-marvel"
+    ]
+  },
+  {
+    "Name": "zeszyty",
+    "Subcategories": [
+      "24h",
+      "dc-rebirth",
+      "image"
+    ]
+  }
+]

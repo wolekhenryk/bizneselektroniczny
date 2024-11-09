@@ -27,4 +27,11 @@ public class ProductController(
         var stream = await productsRetrieverService.GetImage(title);
         return File(stream, "image/jpeg");
     }
+
+    [HttpGet("categories")]
+    public async Task<IActionResult> WriteCategories()
+    {
+        await productsRetrieverService.WriteCategoriesAsync();
+        return Ok();
+    }
 }
