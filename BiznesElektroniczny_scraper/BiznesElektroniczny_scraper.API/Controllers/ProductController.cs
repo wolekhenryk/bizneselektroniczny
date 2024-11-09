@@ -21,4 +21,10 @@ public class ProductController(
     [HttpGet("category-tree")]
     public async Task<IActionResult> GetCategoryTree() =>
         Ok(await productsRetrieverService.CreateTree());
+
+    [HttpGet("img/{title}")]
+    public async Task<IActionResult> GetImage(string title) {
+        var stream = await productsRetrieverService.GetImage(title);
+        return File(stream, "image/jpeg");
+    }
 }

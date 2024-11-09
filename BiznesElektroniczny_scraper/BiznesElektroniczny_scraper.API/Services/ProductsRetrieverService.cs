@@ -13,6 +13,18 @@ public class ProductsRetrieverService(IConfiguration configuration) {
         return JsonConvert.DeserializeObject<List<Product>>(json) ?? [];
     }
 
+    public async Task<Stream> GetImage(string title)
+    {
+        var products = await GetAllProducts();
+        var foundProduct = products.FirstOrDefault(p => p.Title == title);
+
+        if (foundProduct == null)
+            return new MemoryStream();
+
+        var imgPath = foundProduct.ImgPath;
+        return new FileStream(imgPath, FileMode.Open);
+    }
+
     public async Task<ExtendedCategory> CreateTree() {
         var products = await GetAllProducts();
 
