@@ -10,6 +10,9 @@ if __name__ == '__main__':
         'JRUL76DYZHM8KLUS7SZ244PF179G9LI8'
     )
     
-    category_template = prestashop.get('products', options={
+    products = prestashop.get("products")["products"]
+    
+    product_template = prestashop.get('products', options={
         "schema": "blank"
     })
+
