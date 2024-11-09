@@ -11,6 +11,7 @@ public class ProductScrapingService(
     IConfiguration configuration,
     ILogger<ProductScrapingService> logger) {
     private readonly string _jsonPath = configuration["Paths:ProductsJsonPath"]!;
+    private readonly string _jsonCategoryPath = configuration["Paths:CategoriesJsonPath"]!;
     private readonly string _imgDirectoryPath = configuration["Paths:ImgDirectoryPath"]!;
     private readonly string _browserPath = configuration["Paths:BrowserPath"]!;
 
@@ -83,6 +84,7 @@ public class ProductScrapingService(
         var allProductDivs = await page.QuerySelectorAllAsync(".oneperrow.f-row.product");
 
         var categoryName = Regex.Replace(uri.Replace("https://www.atomcomics.pl/kategoria/", ""), @"/\d+$", "");
+        var categoryPath = categoryName.Split('/');
 
         foreach (var productElement in allProductDivs) {
             await productElement.WaitForSelectorAsync(".product-details-list");
@@ -107,7 +109,8 @@ public class ProductScrapingService(
             var product = new Product {
                 Title = titleName,
                 Manufacturer = manufacturerName,
-                CategoryName = categoryName,
+                CategoryName = categoryPath[0],
+                SubcategoryName = categoryPath.Length > 1 ? categoryPath[1] : "No subcategory",
                 Price = price
             };
 
@@ -118,7 +121,8 @@ public class ProductScrapingService(
     }
 
     private async Task SerializeToJsonAsync(IEnumerable<Product> products) {
-        var json = JsonConvert.SerializeObject(products.DistinctBy(p => p.Title), Formatting.Indented);
+        var enumerable = products as Product[] ?? products.ToArray();
+        var json = JsonConvert.SerializeObject(enumerable.DistinctBy(p => p.Title), Formatting.Indented);
         await File.WriteAllTextAsync(_jsonPath, json);
     }
 
@@ -198,7 +202,7 @@ public class ProductScrapingService(
 
             for (var i = 0; i < count; i++) {
                 var browser = await Puppeteer.LaunchAsync(new LaunchOptions {
-                    Headless = false,
+                    Headless = true,
                     ExecutablePath = _browserPath,
                     DefaultViewport = new ViewPortOptions {
                         Width = 1920,
