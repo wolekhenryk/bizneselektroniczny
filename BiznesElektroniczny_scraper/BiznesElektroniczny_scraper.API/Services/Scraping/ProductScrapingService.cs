@@ -9,7 +9,8 @@ namespace BiznesElektroniczny_scraper.API.Services.Scraping;
 public class ProductScrapingService(
     HttpClient httpClient,
     IConfiguration configuration,
-    ILogger<ProductScrapingService> logger) {
+    ILogger<ProductScrapingService> logger)
+{
     private readonly string _jsonPath = configuration["Paths:ProductsJsonPath"]!;
     private readonly string _jsonCategoryPath = configuration["Paths:CategoriesJsonPath"]!;
     private readonly string _imgDirectoryPath = configuration["Paths:ImgDirectoryPath"]!;
@@ -18,64 +19,90 @@ public class ProductScrapingService(
     //private IBrowser _browser = null!;
     private readonly ConcurrentBag<IBrowser> _browsers = [];
 
-    public async Task ScrapeAsync(params string[] pageUrls) {
+    public async Task ScrapeAsync(params string[] pageUrls)
+    {
         await PrepareAsync(pageUrls.Length);
 
-        try {
+        try
+        {
             ConcurrentBag<Product[]> finalProducts = [];
 
             var zipped = pageUrls
                 .Zip(_browsers, (pageUrl, browser) => (pageUrl, browser));
 
-            await Parallel.ForEachAsync(zipped, async (pageBrowser, _) => {
-                var (pageUrl, browser) = pageBrowser;
+            await Parallel.ForEachAsync(zipped, new ParallelOptions
+            {
+                MaxDegreeOfParallelism = 5
+            }, async (pageBrowser, _) =>
+            {
+                try
+                {
+                    var (pageUrl, browser) = pageBrowser;
 
-                List<Product> products = [];
+                    List<Product> products = [];
 
-                await using var page = await browser.NewPageAsync();
+                    await using var page = await browser.NewPageAsync();
 
-                await page.GoToAsync(pageUrl);
+                    await page.GoToAsync(pageUrl);
 
-                // Determine the amount of pages to scrape
+                    // Determine the amount of pages to scrape
 
-                await page.WaitForSelectorAsync("div.innerbox .floatcenterwrap ul li");
-                var paginationElements = await page.QuerySelectorAllAsync("div.innerbox .floatcenterwrap ul li a");
+                    await page.WaitForSelectorAsync("div.innerbox .floatcenterwrap ul li");
+                    var paginationElements = await page.QuerySelectorAllAsync("div.innerbox .floatcenterwrap ul li a");
 
-                // Get the one element before the last one, because the last one is the next page button
-                var lastPageElement = paginationElements[^2];
+                    // Get the one element before the last one, because the last one is the next page button
+                    var lastPageElement = paginationElements[^2];
 
-                var amountOfPages = await lastPageElement.EvaluateFunctionAsync<int>("e => parseInt(e.innerText)");
+                    var amountOfPages = await lastPageElement.EvaluateFunctionAsync<int>("e => parseInt(e.innerText)");
 
-                //amountOfPages = amountOfPages > 10 ? 10 : amountOfPages;
-                amountOfPages = 1;
+                    amountOfPages = amountOfPages > 10 ? 10 : amountOfPages;
 
-                for (var pageNumber = 1; pageNumber <= amountOfPages; pageNumber++) {
-                    if (pageNumber == 1) {
-                        await ScrapePage(pageUrl, products, page, browser);
+                    for (var pageNumber = 1; pageNumber <= amountOfPages; pageNumber++)
+                    {
+                        try
+                        {
+                            if (pageNumber == 1)
+                            {
+                                await ScrapePage(pageUrl, products, page, browser);
+                            }
+                            else
+                            {
+                                var uri = $"{pageUrl}/{pageNumber}";
+                                await ScrapePage(uri, products, page, browser);
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            logger.LogError(e, "Error while scraping page: {url}/{pageNo}", pageUrl, pageNumber);
+                            continue;
+                        }
                     }
-                    else {
-                        var uri = $"{pageUrl}/{pageNumber}";
-                        await ScrapePage(uri, products, page, browser);
-                    }
+
+                    finalProducts.Add(products.ToArray());
+
+                    await browser.CloseAsync();
                 }
-
-                finalProducts.Add(products.ToArray());
-
-                await browser.CloseAsync();
+                catch (Exception e)
+                {
+                    logger.LogError(e, "Error while scraping page");
+                }
             });
 
             await SerializeToJsonAsync(finalProducts.SelectMany(p => p));
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.LogError(e, "Error while scraping products");
         }
-        finally {
+        finally
+        {
             foreach (var browser in _browsers.Where(b => !b.IsClosed))
                 await browser.CloseAsync();
         }
     }
 
-    private async Task ScrapePage(string uri, ICollection<Product> products, IPage page, IBrowser assignedBrowser) {
+    private async Task ScrapePage(string uri, ICollection<Product> products, IPage page, IBrowser assignedBrowser)
+    {
         await page.GoToAsync(uri);
 
         await page.WaitForSelectorAsync(".products.viewdesc");
@@ -86,7 +113,8 @@ public class ProductScrapingService(
         var categoryName = Regex.Replace(uri.Replace("https://www.atomcomics.pl/kategoria/", ""), @"/\d+$", "");
         var categoryPath = categoryName.Split('/');
 
-        foreach (var productElement in allProductDivs) {
+        foreach (var productElement in allProductDivs)
+        {
             await productElement.WaitForSelectorAsync(".product-details-list");
 
             var titleNameElement = await productElement.QuerySelectorAsync("span.productname");
@@ -106,7 +134,8 @@ public class ProductScrapingService(
             var productUrlElement = await productElement.QuerySelectorAsync("a.prodname");
             var productUrl = await productUrlElement.EvaluateFunctionAsync<string>("e => e.href");
 
-            var product = new Product {
+            var product = new Product
+            {
                 Title = titleName,
                 Manufacturer = manufacturerName,
                 CategoryName = categoryPath[0],
@@ -117,22 +146,28 @@ public class ProductScrapingService(
             await GetDetailsAsync(productUrl, product, assignedBrowser);
 
             products.Add(product);
+
+            await Task.Delay(TimeSpan.FromSeconds(2));
         }
     }
 
-    private async Task SerializeToJsonAsync(IEnumerable<Product> products) {
+    private async Task SerializeToJsonAsync(IEnumerable<Product> products)
+    {
         var enumerable = products as Product[] ?? products.ToArray();
         var json = JsonConvert.SerializeObject(enumerable.DistinctBy(p => p.Title), Formatting.Indented);
         await File.WriteAllTextAsync(_jsonPath, json);
     }
 
-    private async Task GetDetailsAsync(string productUrl, Product product, IBrowser assignedBrowser) {
+    private async Task GetDetailsAsync(string productUrl, Product product, IBrowser assignedBrowser)
+    {
         await using var page = await assignedBrowser.NewPageAsync();
 
         await page.GoToAsync(productUrl);
 
-        try {
-            await page.WaitForSelectorAsync("div.row.code.codeisbn span", new WaitForSelectorOptions {
+        try
+        {
+            await page.WaitForSelectorAsync("div.row.code.codeisbn span", new WaitForSelectorOptions
+            {
                 Timeout = 5000
             });
             var isbnElement = await page.QuerySelectorAsync("div.row.code.codeisbn span");
@@ -140,12 +175,14 @@ public class ProductScrapingService(
             var isbn = await isbnElement.EvaluateFunctionAsync<string>("e => e.innerText");
             product.Isbn = isbn;
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.LogError(e, "Error while getting ISBN");
             product.Isbn = "No ISBN";
         }
 
-        try {
+        try
+        {
             var descriptionElement = await page.QuerySelectorAsync("div.product-modules");
             var descriptionParagraphs = await descriptionElement.QuerySelectorAllAsync("p");
 
@@ -154,28 +191,34 @@ public class ProductScrapingService(
                 : await descriptionParagraphs.First().EvaluateFunctionAsync<string>("e => e.innerText");
             product.Description = descriptionText;
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.LogError(e, "Error while getting description");
             product.Description = "No description";
         }
 
-        try {
+        try
+        {
             var photoElement = await page.QuerySelectorAsync("div.mainimg.productdetailsimgsize.row a");
-            if (photoElement is not null) {
+            if (photoElement is not null)
+            {
                 var photoUrl = await photoElement.EvaluateFunctionAsync<string>("e => e.href");
 
                 var imgPath = await SaveImgAsync(photoUrl);
                 product.ImgPath = imgPath;
             }
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.LogError(e, "Error while getting photo");
             product.ImgPath = "No image";
         }
     }
 
-    private async Task<string> SaveImgAsync(string photoUrl) {
-        try {
+    private async Task<string> SaveImgAsync(string photoUrl)
+    {
+        try
+        {
             var fileName = $"{Guid.NewGuid()}{Path.GetExtension(photoUrl)}";
             var filePath = Path.Combine(_imgDirectoryPath, fileName);
 
@@ -186,25 +229,32 @@ public class ProductScrapingService(
 
             return filePath;
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.LogError(e, "Error while saving image");
             return "No image";
         }
     }
 
-    private async Task PrepareAsync(int count = 4) {
-        try {
-            var browserFetcher = Puppeteer.CreateBrowserFetcher(new BrowserFetcherOptions {
+    private async Task PrepareAsync(int count = 4)
+    {
+        try
+        {
+            var browserFetcher = Puppeteer.CreateBrowserFetcher(new BrowserFetcherOptions
+            {
                 Path = null
             });
 
             await browserFetcher.DownloadAsync(BrowserTag.Stable);
 
-            for (var i = 0; i < count; i++) {
-                var browser = await Puppeteer.LaunchAsync(new LaunchOptions {
-                    Headless = true,
+            for (var i = 0; i < count; i++)
+            {
+                var browser = await Puppeteer.LaunchAsync(new LaunchOptions
+                {
+                    Headless = false,
                     ExecutablePath = _browserPath,
-                    DefaultViewport = new ViewPortOptions {
+                    DefaultViewport = new ViewPortOptions
+                    {
                         Width = 1920,
                         Height = 1080
                     }
@@ -213,7 +263,8 @@ public class ProductScrapingService(
                 _browsers.Add(browser);
             }
         }
-        catch (Exception e) {
+        catch (Exception e)
+        {
             logger.LogError(e, "Error while preparing browser");
         }
     }

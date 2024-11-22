@@ -1,22 +1,30 @@
 [
   {
-    "Name": "bohaterowie",
+    "Name": "gatunki",
     "Subcategories": [
-      "komiksy-deadpool",
-      "komiksy-hulk"
+      "komiksy-dla-doroslych",
+      "komiksy-dla-dzieci",
+      "komiksy-serialowe"
+    ]
+  },
+  {
+    "Name": "serie",
+    "Subcategories": [
+      "komiksy-cyberpunk",
+      "komiksy-fortnite"
     ]
   },
   {
     "Name": "wydania-zbiorcze",
     "Subcategories": [
-      "wydania-zbiorcze-marvel"
+      "dc",
+      "marvel"
     ]
   },
   {
     "Name": "zeszyty",
     "Subcategories": [
-      "24h",
-      "dc-rebirth",
+      "dc",
       "image"
     ]
   }
