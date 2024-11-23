@@ -34,4 +34,11 @@ public class ProductController(
         await productsRetrieverService.WriteCategoriesAsync();
         return Ok();
     }
+
+    [HttpGet("rewrite")]
+    public async Task<IActionResult> Rewrite()
+    {
+        await productsRetrieverService.RewriteProductsAsync();
+        return Ok();
+    }
 }
