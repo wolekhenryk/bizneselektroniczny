@@ -1,5 +1,8 @@
 import json
 import random
+
+import ET
+import requests
 from prestapyt import PrestaShopWebServiceDict
 from category_utils import get_category_and_subcategory
 
@@ -17,7 +20,32 @@ def get_template():
     print(json.dumps(product_template, indent=4))
     
     return product_template
-    
+
+def delete_all_products():
+    # Send GET request to fetch all categories (or products if endpoint exists)
+    response = requests.get(api_url_products, auth=(api_key, ''))
+
+    if response.status_code == 200:
+        try:
+            root = ET.fromstring(response.text)
+            # Get product IDs from the 'id' attribute in each <product> element
+            product_ids = [int(product.get('id')) for product in root.findall(".//product")]
+            print(product_ids)
+            # Proceed to delete each product
+            for product_id in product_ids:
+                delete_response = requests.delete(f"{api_url_products}/{product_id}", auth=(api_key, ''))
+                if delete_response.status_code == 200:
+                    print(f"Product ID {product_id} deleted successfully.")
+                else:
+                    print(f"Failed to delete product ID {product_id}. Status code: {delete_response.status_code}")
+                    print("Error response:", delete_response.text)
+        except ET.ParseError as e:
+            print("Failed to parse XML response:", e)
+            print("Response content:", response.text)
+    else:
+        print(f"Failed to fetch products. Status code: {response.status_code}")
+        print("Error response:", response.text)
+
 def add_product(prestashop, product, category_id: int, subcategory_id: int, product_template):
     product_template["product"]["name"]["language"]["value"] = product["Title"]
     #product_template["product"]["name"]["language"][1]["value"] = product["Title"]
