@@ -4,6 +4,7 @@ import os
 import io
 from prestapyt import PrestaShopWebServiceDict
 from category_utils import get_category_and_subcategory
+from concurrent.futures import ProcessPoolExecutor, as_completed
 
 # API credentials and URL
 api_url = 'http://localhost:8080/api/'
@@ -18,30 +19,33 @@ def get_template():
     
     return product_template
 
-def delete_products():
-    # Send GET request to fetch all categories (or products if endpoint exists)
-    response = requests.get(api_url + 'products', auth=(api_key, ''))
+def delete_product(product_id, left):
+    prestashop = PrestaShopWebServiceDict(api_url, api_key)
 
-    if response.status_code == 200:
-        try:
-            root = ET.fromstring(response.text)
-            # Get product IDs from the 'id' attribute in each <product> element
-            product_ids = [int(product.get('id')) for product in root.findall(".//product")]
-            print(product_ids)
-            # Proceed to delete each product
-            for product_id in product_ids:
-                delete_response = requests.delete(f"{api_url + 'products'}/{product_id}", auth=(api_key, ''))
-                if delete_response.status_code == 200:
-                    print(f"Product ID {product_id} deleted successfully.")
-                else:
-                    print(f"Failed to delete product ID {product_id}. Status code: {delete_response.status_code}")
-                    print("Error response:", delete_response.text)
-        except ET.ParseError as e:
-            print("Failed to parse XML response:", e)
-            print("Response content:", response.text)
-    else:
-        print(f"Failed to fetch products. Status code: {response.status_code}")
-        print("Error response:", response.text)
+    try:
+        prestashop.delete("products", product_id)
+        print(f"Deleted product with ID {product_id}. Left to delete: {left}")
+    except Exception as e:
+        print(f"Error occured while deleting product with ID {product_id}: {e}")
+
+
+def delete_products():
+    prestashop = PrestaShopWebServiceDict(api_url, api_key)
+
+    products = prestashop.get("products")["products"]
+    if products == '' or len(products["product"]) == 0:
+        print("No products to delete.")
+        return
+    with ProcessPoolExecutor(max_workers=16) as executor:
+        futures = []
+        left = len(products["product"])
+        for product in products["product"]:
+            product_id = product["attrs"]["id"]
+            futures.append(executor.submit(delete_product, product_id, left))
+            left-=1
+
+        for future in as_completed(futures):
+            future.result()
 
 def set_stock(prestashop, product_id: int):
     try:
@@ -71,7 +75,7 @@ def upload_image(prestashop, product_id: int, product):
     except Exception as e:
         print(f'Failed to add image for {product_id}')
 
-def add_product(prestashop, product, category_id: int, subcategory_id: int, product_template):
+def add_product(prestashop, product, category_id: int, subcategory_id: int, product_template, leftToUpload):
     product_template["product"]["name"]["language"]["value"] = product["Title"]
     
     product_template["product"]["id_category_default"] = category_id
@@ -100,23 +104,38 @@ def add_product(prestashop, product, category_id: int, subcategory_id: int, prod
 
     
     product_id = prestashop.add("products", product_template)["prestashop"]["product"]["id"]
-    print(f"Product {product_id} added.")
+
+    print(f"Product {product_id} added. Products left to add: {leftToUpload}")
     
     set_stock(prestashop, product_id)
     upload_image(prestashop, product_id, product)
 
+
+def add_product_to_category(product, categories_dictionary, prestashop, template, leftToUpload):
+    # Użyj tego słownika, żeby wsadzić produkt do odpowiedniej kategorii
+    category_id, subcategory_id = get_category_and_subcategory(categories_dictionary, product["CategoryName"], product["SubcategoryName"])
+    add_product(prestashop, product, category_id, subcategory_id, template, leftToUpload)
+
 def load_products(categories_dictionary: dict):
-    # Check if the products are already loaded
     prestashop = PrestaShopWebServiceDict(api_url, api_key)
+
     products = prestashop.get("products")["products"]
     if products != '' and len(products["product"]) > 0:
         print("Products already loaded.")
         return
-    
+
     with open("../ScrapingResults/Serialization/products.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
+
+    template = get_template()
+
+    with ProcessPoolExecutor(max_workers=16) as executor:
+        futures = []
+        leftToUpload = len(data)
         for product in data:
-            # Użyj tego słownika, żeby wsadzić produkt do odpowiedniej kategorii
-            category_id, subcategory_id = get_category_and_subcategory(categories_dictionary, product["CategoryName"], product["SubcategoryName"])
-            add_product(prestashop, product, category_id, subcategory_id, get_template())
+            futures.append(executor.submit(add_product_to_category, product, categories_dictionary, prestashop, template, leftToUpload))
+            leftToUpload -= 1
+        for future in as_completed(futures):
+            future.result()
+
             
