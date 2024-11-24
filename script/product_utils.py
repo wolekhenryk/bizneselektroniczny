@@ -1,7 +1,7 @@
 import json
 import random
 
-import ET
+import xml.etree.ElementTree as ET
 import requests
 from prestapyt import PrestaShopWebServiceDict
 from category_utils import get_category_and_subcategory
@@ -21,9 +21,9 @@ def get_template():
     
     return product_template
 
-def delete_all_products():
+def delete_products():
     # Send GET request to fetch all categories (or products if endpoint exists)
-    response = requests.get(api_url_products, auth=(api_key, ''))
+    response = requests.get(api_url + 'products', auth=(api_key, ''))
 
     if response.status_code == 200:
         try:
@@ -33,7 +33,7 @@ def delete_all_products():
             print(product_ids)
             # Proceed to delete each product
             for product_id in product_ids:
-                delete_response = requests.delete(f"{api_url_products}/{product_id}", auth=(api_key, ''))
+                delete_response = requests.delete(f"{api_url + 'products'}/{product_id}", auth=(api_key, ''))
                 if delete_response.status_code == 200:
                     print(f"Product ID {product_id} deleted successfully.")
                 else:
@@ -100,5 +100,5 @@ def load_products(categories_dictionary: dict):
             
             add_product(prestashop, product, category_id, subcategory_id, get_template())
             
-            break
+
             
