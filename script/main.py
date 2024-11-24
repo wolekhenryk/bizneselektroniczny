@@ -15,8 +15,11 @@ def main():
     # Step 4: Transform the categories into a dictionary of dictionaries
     transformed_categories = category_utils.transform_categories(categories)
     #print(json.dumps(transformed_categories, indent=4))
-    
-    # Step 5: Load the products
+
+    #Step 5: Delete the products
+    product_utils.delete_products()
+
+    # Step 6: Load the products
     product_utils.load_products(transformed_categories)
     
 if __name__ == "__main__":
