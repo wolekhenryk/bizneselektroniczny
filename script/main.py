@@ -12,11 +12,12 @@ def main():
     # Step 3: Fetch the categories
     categories = category_utils.fetch_categories()
     
-    # Step 4: Build the subcategory paths
-    paths = category_utils.build_subcategory_paths(categories)
+    # Step 4: Transform the categories into a dictionary of dictionaries
+    transformed_categories = category_utils.transform_categories(categories)
+    #print(json.dumps(transformed_categories, indent=4))
     
     # Step 5: Load the products
-    product_utils.load_products(paths)
+    product_utils.load_products(transformed_categories)
     
 if __name__ == "__main__":
     main()

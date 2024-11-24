@@ -41,6 +41,8 @@ def load_categories():
     with open("..\\ScrapingResults\\Serialization\\categories.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
         categories_dict = {item["Name"]: item["Subcategories"] for item in data}
+        
+        print(json.dumps(categories_dict, indent=4))
 
     # Function to add a category
     def add_category(name, parent_id=2, description="Default description"):
@@ -110,24 +112,36 @@ def fetch_categories() -> dict:
     return categories_dict
 
 
-def build_subcategory_paths(categories):
-    # Function to recursively build the path for a category
-    def get_full_path(category_id):
-        category = categories[category_id]
-        if category["parent_id"] == "2":  # Stop at direct children of "Home"
-            return category["category_name"]
-        return get_full_path(category["parent_id"]) + "/" + category["category_name"]
-    
-    # Find all subcategories (categories that are not parents themselves)
-    subcategory_paths = {}
+def transform_categories(categories: dict) -> dict:
+    main_categories = {}
+
+    # Iterate over categories to find main and subcategories
     for category_id, details in categories.items():
+        parent_id = details["parent_id"]
+        category_name = details["category_name"]
+        
         # Skip "Root" and "Home"
-        if category_id in ("1", "2"):
+        if parent_id == "0" or category_name == "Home":
             continue
         
-        # Check if this category has subcategories
-        is_parent = any(cat["parent_id"] == category_id for cat in categories.values())
-        if not is_parent:  # Include only leaf nodes
-            subcategory_paths[get_full_path(category_id)] = category_id
-    
-    return subcategory_paths
+        # If the parent is "Home" (main category), initialize it in the result
+        if parent_id == "2":
+            main_categories[category_id] = {"name": category_name, "subcategories": {}}
+        # Otherwise, add it as a subcategory under its parent
+        elif parent_id in categories:
+            parent_name_id = [
+                k for k, v in main_categories.items() if v["name"] == categories[parent_id]["category_name"]
+            ]
+            if parent_name_id:
+                main_categories[parent_name_id[0]]["subcategories"][category_id] = category_name
+
+                
+    return main_categories
+
+def get_category_and_subcategory(dict: dict, category_name: str, subcategory_name: str) -> tuple[int, int]:
+    for main_category_id, main_category in dict.items():
+        if main_category["name"] == category_name:
+            for subcategory_id, subcategory in main_category["subcategories"].items():
+                if subcategory == subcategory_name:
+                    return main_category_id, subcategory_id
+    return None, None
