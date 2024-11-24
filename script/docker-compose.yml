@@ -29,5 +29,11 @@ services:
       PS_FOLDER_ADMIN: admin123
     networks:
       - prestashop_network
+    volumes:
+      - ./prestashop:/var/www/html  # Dane PrestaShop, aby były trwałe
+
 networks:
-    prestashop_network:
+  prestashop_network:
+
+volumes:
+  prestashop:  # Wolumen na dane PrestaShop
