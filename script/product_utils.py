@@ -104,6 +104,7 @@ def add_product(prestashop, product, category_id: int, subcategory_id: int, prod
 
     
     product_id = prestashop.add("products", product_template)["prestashop"]["product"]["id"]
+
     print(f"Product {product_id} added. Products left to add: {leftToUpload}")
     
     set_stock(prestashop, product_id)
@@ -114,7 +115,6 @@ def add_product_to_category(product, categories_dictionary, prestashop, template
     # Użyj tego słownika, żeby wsadzić produkt do odpowiedniej kategorii
     category_id, subcategory_id = get_category_and_subcategory(categories_dictionary, product["CategoryName"], product["SubcategoryName"])
     add_product(prestashop, product, category_id, subcategory_id, template, leftToUpload)
-
 
 def load_products(categories_dictionary: dict):
     prestashop = PrestaShopWebServiceDict(api_url, api_key)
@@ -137,3 +137,5 @@ def load_products(categories_dictionary: dict):
             leftToUpload -= 1
         for future in as_completed(futures):
             future.result()
+
+            
