@@ -1,5 +1,5 @@
 import json
-import requests
+from copy import deepcopy
 from prestapyt import PrestaShopWebServiceDict
 
 # API credentials and URL
@@ -27,6 +27,33 @@ def delete_categories():
             print(f"Deleted category with ID {category_id}")
         except Exception as e:
             print(f"Failed to delete category with ID {category_id}: {e}")
+            
+
+def push_category(schema, name: str, parent_id='2'):
+    prestashop = PrestaShopWebServiceDict(api_url, api_key)
+    category_schema = prestashop.get("categories", options={
+        "schema": "blank"
+    })
+    
+    #print(json.dumps(category_schema, indent=2))
+    
+    category_data = deepcopy(schema)
+    
+    category_data['category']['id_parent'] = parent_id
+    category_data['category']['active'] = '1'
+    category_data['category']['id_shop_default'] = '1'
+    category_data['category']['name'] = {'language': [{'attrs': {'id': '2'}, 'value': name}]}
+    category_data['category']['description'] = {'language': [{'attrs': {'id': '2'}, 'value': f'Description for {name}'}]}
+    category_data['category']['link_rewrite'] = {'language': [{'attrs': {'id': '2'}, 'value': name.lower().replace(" ", "-")}]}
+    
+    try:
+        response = prestashop.add('categories', category_data)
+        print(f"Category '{name}' created with ID: {response['prestashop']['category']['id']}")
+        return response["prestashop"]['category']['id']
+    except Exception as e:
+        print(f"Error creating category '{name}': {e}")
+        return None
+
     
 def load_categories():
     prestashop = PrestaShopWebServiceDict(api_url, api_key)
@@ -38,58 +65,40 @@ def load_categories():
         return
     
     # Load the JSON data
-    with open("..\\ScrapingResults\\Serialization\\categories.json", 'r', encoding='utf-8') as file:
+    with open("../ScrapingResults/Serialization/categories.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
         categories_dict = {item["Name"]: item["Subcategories"] for item in data}
         
-        print(json.dumps(categories_dict, indent=4))
-
     # Function to add a category
     def add_category(name, parent_id=2, description="Default description"):
-        # Prepare XML data for the category
-        category_xml = f"""
-        <prestashop>
-        <category>
-            <id_parent>{parent_id}</id_parent>
-            <active>1</active>
-            <name>
-            <language id="1">{name}</language>
-            </name>
-            <link_rewrite>
-            <language id="1">{name.lower().replace(" ", "-")}</language>
-            </link_rewrite>
-            <description>
-            <language id="1">{description}</language>
-            </description>
-        </category>
-        </prestashop>
-        """
+        category_data = prestashop.get("categories", options={
+            "schema": "blank"
+        })
         
-        # Set headers
-        headers = {'Content-Type': 'application/xml', 'Accept': 'application/xml'}
+        category_data['category']['id_parent'] = parent_id
+        category_data['category']['active'] = '1'
+        category_data['category']['id_shop_default'] = '1'
+        category_data['category']['name'] = {'language': [{'attrs': {'id': '2'}, 'value': name}]}
+        category_data['category']['description'] = {'language': [{'attrs': {'id': '2'}, 'value': f'Description for {name}'}]}
+        category_data['category']['link_rewrite'] = {'language': [{'attrs': {'id': '2'}, 'value': name.lower().replace(" ", "-")}]}
         
-        # Send POST request to create the category
-        response = requests.post(f'{api_url}/categories', headers=headers, data=category_xml, auth=(api_key, ''))
-        
-        if response.status_code == 201:
-            # Successfully created, parse the new category ID from the response
-            print(f"Category '{name}' created successfully.")
-            category_id = response.text.split('<id>')[1].split('</id>')[0]  # Extract ID from the XML response
-            return category_id
-        else:
-            print(f"Failed to create category '{name}'. Status code: {response.status_code}")
-            print("Error response:", response.text)
+        try:
+            response = prestashop.add('categories', category_data)
+            #print(f"Category '{name}' created with ID: {response['prestashop']['category']['id']}")
+            return response["prestashop"]['category']['id']
+        except Exception as e:
+            print(f"Error creating category '{name}': {e}")
             return None
 
     # Step 3: Create Main Categories and Subcategories
     for main_category, subcategories in categories_dict.items():
         # Create the main category and get its ID
-        main_category_id = add_category(main_category, parent_id=2, description=f"Description for {main_category}")
+        main_category_id = add_category(main_category, parent_id=2)
         
         if main_category_id:
             # Create each subcategory under the main category
             for subcategory in subcategories:
-                add_category(subcategory, parent_id=main_category_id, description=f"Description for {subcategory}")
+                add_category(subcategory, parent_id=main_category_id)
 
 def fetch_categories() -> dict:
     prestashop = PrestaShopWebServiceDict(api_url, api_key)
