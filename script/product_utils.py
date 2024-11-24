@@ -70,7 +70,7 @@ def upload_image(prestashop, product_id: int, product):
         print(f'Added image for {product_id}')
     except Exception as e:
         print(f'Failed to add image for {product_id}')
-    
+
 def add_product(prestashop, product, category_id: int, subcategory_id: int, product_template):
     product_template["product"]["name"]["language"]["value"] = product["Title"]
     
@@ -119,5 +119,4 @@ def load_products(categories_dictionary: dict):
             # Użyj tego słownika, żeby wsadzić produkt do odpowiedniej kategorii
             category_id, subcategory_id = get_category_and_subcategory(categories_dictionary, product["CategoryName"], product["SubcategoryName"])
             add_product(prestashop, product, category_id, subcategory_id, get_template())
-            break
             
