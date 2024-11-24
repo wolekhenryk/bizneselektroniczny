@@ -1,5 +1,7 @@
 import json
 import random
+import os
+import io
 from prestapyt import PrestaShopWebServiceDict
 from category_utils import get_category_and_subcategory
 
@@ -14,13 +16,38 @@ def get_template():
     del product_template["product"]["associations"]["combinations"]
     del product_template["product"]["position_in_category"]
     
-    print(json.dumps(product_template, indent=4))
-    
     return product_template
+
+def set_stock(prestashop, product_id: int):
+    try:
+        available_id = prestashop.search('stock_availables', options={'filter[id_product]': product_id})[0]
+        stock_available_schema = prestashop.get('stock_availables', available_id)
+        stock_available_schema['stock_available']['quantity'] = random.randint(0, 10)
+        prestashop.edit('stock_availables', stock_available_schema)
+        print(f'Stock added for {product_id}')
+    except Exception as e:
+        print(f'Error setting stock for {product_id}.')
+        
+def upload_image(prestashop, product_id: int, product):
+    imgpath = product['ImgPath']
+    if 'No image' in imgpath:
+        print(f'No image for {product_id}')
+        return
+    
+    imgpath = os.path.basename(imgpath.replace("\\", "/"))
+    imgpath = os.path.join('..', 'ScrapingResults', 'Img', imgpath)
+    
+    fd = io.open(imgpath, 'rb')
+    content = fd.read()
+    fd.close()
+    try:
+        prestashop.add(f'images/products/{product_id}', files=[('image', os.path.basename(imgpath), content)])
+        print(f'Added image for {product_id}')
+    except Exception as e:
+        print(f'Failed to add image for {product_id}')
     
 def add_product(prestashop, product, category_id: int, subcategory_id: int, product_template):
     product_template["product"]["name"]["language"]["value"] = product["Title"]
-    #product_template["product"]["name"]["language"][1]["value"] = product["Title"]
     
     product_template["product"]["id_category_default"] = category_id
     
@@ -34,10 +61,8 @@ def add_product(prestashop, product, category_id: int, subcategory_id: int, prod
     product_template["product"]["show_price"] = 1
     
     product_template["product"]["meta_title"]["language"]["value"] = product["Manufacturer"]
-    #product_template["product"]["meta_title"]["language"][1]["value"] = product["Manufacturer"]
     
     product_template["product"]["link_rewrite"]["language"]["value"] = product["Manufacturer"].replace(" ", "-").lower()
-    #product_template["product"]["link_rewrite"]["language"][1]["value"] = product["Manufacturer"].replace(" ", "-").lower()
     
     categories_list = [{'id': 2}, {'id': category_id}, {'id': subcategory_id}]
     
@@ -45,15 +70,15 @@ def add_product(prestashop, product, category_id: int, subcategory_id: int, prod
     
     product_template["product"]["weight"] = round(random.uniform(0.1, 0.4), 2)
     product_template["product"]["description_short"]["language"]["value"] = product["Title"]
-    #product_template["product"]["description_short"]["language"][1]["value"] = product["Title"]
     
     product_template["product"]["description"]["language"]["value"] = product["Description"]
-    #product_template["product"]["description"]["language"][1]["value"] = product["Description"]
-    
-    #print(json.dumps(product_template, indent=4))
+
     
     product_id = prestashop.add("products", product_template)["prestashop"]["product"]["id"]
     print(f"Product {product_id} added.")
+    
+    set_stock(prestashop, product_id)
+    upload_image(prestashop, product_id, product)
 
 def load_products(categories_dictionary: dict):
     # Check if the products are already loaded
@@ -63,14 +88,11 @@ def load_products(categories_dictionary: dict):
         print("Products already loaded.")
         return
     
-    with open("..\\ScrapingResults\\Serialization\\products.json", 'r', encoding='utf-8') as file:
+    with open("../ScrapingResults/Serialization/products.json", 'r', encoding='utf-8') as file:
         data = json.load(file)
         for product in data:
             # Użyj tego słownika, żeby wsadzić produkt do odpowiedniej kategorii
             category_id, subcategory_id = get_category_and_subcategory(categories_dictionary, product["CategoryName"], product["SubcategoryName"])
-            print(f"Category ID: {category_id}, Subcategory ID: {subcategory_id}, category: {product['CategoryName']}, subcategory: {product['SubcategoryName']}")
-            
             add_product(prestashop, product, category_id, subcategory_id, get_template())
-            
             break
             
