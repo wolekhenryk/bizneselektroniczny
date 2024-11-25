@@ -1,0 +1,31 @@
+[
+  {
+    "Name": "gatunki",
+    "Subcategories": [
+      "komiksy-dla-doroslych",
+      "komiksy-dla-dzieci",
+      "komiksy-serialowe"
+    ]
+  },
+  {
+    "Name": "serie",
+    "Subcategories": [
+      "komiksy-cyberpunk",
+      "komiksy-fortnite"
+    ]
+  },
+  {
+    "Name": "wydania-zbiorcze",
+    "Subcategories": [
+      "dc",
+      "marvel"
+    ]
+  },
+  {
+    "Name": "zeszyty",
+    "Subcategories": [
+      "dc",
+      "image"
+    ]
+  }
+]
