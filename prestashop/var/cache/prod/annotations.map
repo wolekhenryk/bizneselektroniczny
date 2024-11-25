@@ -200,4 +200,13 @@
   200 => 'PrestaShop\\Module\\Mbo\\Controller\\Admin\\ModuleSelectionController',
   201 => 'PrestaShop\\Module\\Mbo\\Controller\\Admin\\SecurityController',
   202 => 'PrestaShop\\Module\\Mbo\\Controller\\Admin\\ThemeCatalogController',
+  203 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\AbstractRestController',
+  204 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\AbstractShopRestController',
+  205 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\Request\\Request',
+  206 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\Request\\ShopHealthCheckRequest',
+  207 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\Request\\UpdateShopLinkAccountRequest',
+  208 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\Request\\UpdateShopOauth2ClientRequest',
+  209 => 'PrestaShop\\Module\\PsAccounts\\Api\\Controller\\RestMethod',
+  210 => 'PrestaShop\\Module\\PsAccounts\\Entity\\EmployeeAccount',
+  211 => 'PrestaShop\\Module\\PsAccounts\\Polyfill\\Traits\\Controller\\AjaxRender',
 );
