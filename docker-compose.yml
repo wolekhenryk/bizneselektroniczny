@@ -9,6 +9,8 @@ services:
       MYSQL_DATABASE: prestashop
     networks:
       - prestashop_network
+    volumes:
+      - ./db_init:/docker-entrypoint-initdb.d
 
   prestashop:
     container_name: prestashop
