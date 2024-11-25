@@ -1,5 +1,5 @@
 import category_utils
-#import product_utils
+import product_utils
 import json
 
 def main():
@@ -15,6 +15,9 @@ def main():
     # Step 4: Transform the categories into a dictionary of dictionaries
     transformed_categories = category_utils.transform_categories(categories)
     print(json.dumps(transformed_categories, indent=4))
+
+    # Step 5: Load products
+    product_utils.load_products(transformed_categories)
 
 
 if __name__ == "__main__":

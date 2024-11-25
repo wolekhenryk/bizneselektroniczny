@@ -546,7 +546,7 @@ class ProductCore extends ObjectModel
                     'modifier' => 'modifierWsLinkRewrite',
                 ],
             ],
-            'name' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isCatalogName', 'required' => false, 'size' => ProductSettings::MAX_NAME_LENGTH],
+            'name' => ['type' => self::TYPE_STRING, 'lang' => true, /*'validate' => 'isCatalogName',*/ 'required' => false, 'size' => ProductSettings::MAX_NAME_LENGTH],
             'description' => ['type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'],
             'description_short' => ['type' => self::TYPE_HTML, 'lang' => true, 'validate' => 'isCleanHtml'],
             'available_now' => ['type' => self::TYPE_STRING, 'lang' => true, 'validate' => 'isGenericName', 'size' => ProductSettings::MAX_AVAILABLE_NOW_LABEL_LENGTH],
@@ -7175,7 +7175,7 @@ class ProductCore extends ObjectModel
     {
         $result = $this->getCover($this->id);
 
-        return $result['id_image'];
+        return $result['id_image'] ?? null;
     }
 
     /**
