@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-11-25 17:59:38
+/* Smarty version 3.1.48, created on 2024-11-26 00:04:38
   from '/var/www/html/admin123/themes/default/template/helpers/calendar/calendar.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_6744acfad46097_65631805',
+  'unifunc' => 'content_67450286563e49_25593406',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6744acfad46097_65631805 (Smarty_Internal_Template $_smarty_tpl) {
+function content_67450286563e49_25593406 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div id="datepicker" class="row row-padding-top hide">
 	<div class="col-lg-12">
 		<div class="daterangepicker-days">
