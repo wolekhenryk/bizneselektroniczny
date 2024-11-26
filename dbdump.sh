@@ -7,13 +7,22 @@ DB_PASS="admin"             # Hasło do bazy danych
 DB_NAME="prestashop"        # Nazwa bazy danych do zrzutu
 
 # Ścieżka do zapisu pliku kopii zapasowej
-BACKUP_DIR="./dump"       # Lokalizacja na hosta
+BACKUP_DIR="./db_init"       # Lokalizacja na hosta
 BACKUP_FILE="${BACKUP_DIR}/${DB_NAME}_$(date).sql"
 
 # Tworzenie katalogu kopii zapasowej, jeśli nie istnieje
 mkdir -p "$BACKUP_DIR"
 
-# Uruchamianie zrzutu bazy danych za pomocą polecenia mysqldump w kontenerze MySQL
+# Sprawdzanie statusu operacji
+# Sprawdzenie, czy istnieją pliki w katalogu kopii zapasowej
+if [ "$(ls -A "$BACKUP_DIR")" ]; then
+    echo "Znaleziono istniejące pliki w katalogu $BACKUP_DIR. Usuwam..."
+    rm -rf "$BACKUP_DIR"/*
+    echo "Stare kopie zapasowe zostały usunięte."
+else
+    echo "Katalog kopii zapasowej jest pusty. Kontynuuję..."
+fi
+
 docker exec ebiz-mysql mysqldump -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" > "$BACKUP_FILE"
 
 # Sprawdzanie statusu operacji
