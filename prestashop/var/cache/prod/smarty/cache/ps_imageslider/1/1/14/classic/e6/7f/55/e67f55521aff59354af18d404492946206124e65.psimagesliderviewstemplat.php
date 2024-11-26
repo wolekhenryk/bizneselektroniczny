@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-11-26 00:01:08
+/* Smarty version 3.1.48, created on 2024-11-26 17:44:12
   from 'module:psimagesliderviewstemplat' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_674501b415e530_89748365',
+  'unifunc' => 'content_6745fadc088169_72962357',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -18,7 +18,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 31536000,
 ),true)) {
-function content_674501b415e530_89748365 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6745fadc088169_72962357 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
   <div id="carousel" data-ride="carousel" class="carousel slide" data-interval="5000" data-wrap="true" data-pause="hover" data-touch="true">
     <ol class="carousel-indicators">
@@ -26,7 +26,7 @@ function content_674501b415e530_89748365 (Smarty_Internal_Template $_smarty_tpl)
             <li data-target="#carousel" data-slide-to="1"></li>
             <li data-target="#carousel" data-slide-to="2"></li>
           </ol>
-    <ul class="carousel-inner" role="listbox" aria-label="Pokaz slajdów">
+    <ul class="carousel-inner" role="listbox" aria-label="Carousel container">
               <li class="carousel-item active" role="option" aria-hidden="false">
           <a href="https://www.prestashop-project.org?utm_source=back-office&amp;utm_medium=v17_homeslider&amp;utm_campaign=back-office-EN&amp;utm_content=download">
             <figure>
@@ -64,13 +64,13 @@ function content_674501b415e530_89748365 (Smarty_Internal_Template $_smarty_tpl)
           </a>
         </li>
           </ul>
-    <div class="direction" aria-label="Przyciski karuzeli">
-      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev" aria-label="Poprzedni">
+    <div class="direction" aria-label="Carousel buttons">
+      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev" aria-label="Previous">
         <span class="icon-prev hidden-xs" aria-hidden="true">
           <i class="material-icons">&#xE5CB;</i>
         </span>
       </a>
-      <a class="right carousel-control" href="#carousel" role="button" data-slide="next" aria-label="Następny">
+      <a class="right carousel-control" href="#carousel" role="button" data-slide="next" aria-label="Next">
         <span class="icon-next" aria-hidden="true">
           <i class="material-icons">&#xE5CC;</i>
         </span>

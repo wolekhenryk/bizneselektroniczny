@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-11-26 00:01:08
+/* Smarty version 3.1.48, created on 2024-11-26 17:44:12
   from 'module:psfeaturedproductsviewste' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_674501b4227762_24028838',
+  'unifunc' => 'content_6745fadc199042_72404823',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -36,10 +36,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 31536000,
 ),true)) {
-function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6745fadc199042_72404823 (Smarty_Internal_Template $_smarty_tpl) {
 ?><section class="featured-products clearfix">
   <h2 class="h2 products-section-title text-uppercase">
-    Popularne produkty
+    Popular Products
   </h2>
   
 
@@ -65,7 +65,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -84,8 +84,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  81,00 zł
+              <span class="price" aria-label="Price">
+                                                  zł81.00
                               </span>
 
               
@@ -106,7 +106,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -134,7 +134,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -153,8 +153,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  67,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł67.99
                               </span>
 
               
@@ -175,7 +175,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -203,7 +203,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -222,8 +222,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  67,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł67.99
                               </span>
 
               
@@ -244,7 +244,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -272,7 +272,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -291,8 +291,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  67,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł67.99
                               </span>
 
               
@@ -313,7 +313,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -341,7 +341,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -360,8 +360,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  67,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł67.99
                               </span>
 
               
@@ -382,7 +382,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -410,7 +410,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -429,8 +429,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  67,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł67.99
                               </span>
 
               
@@ -451,7 +451,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -479,7 +479,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -498,8 +498,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  112,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł112.99
                               </span>
 
               
@@ -520,7 +520,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -548,7 +548,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
         <div class="highlighted-informations no-variants">
           
             <a class="quick-view js-quick-view" href="#" data-link-action="quickview">
-              <i class="material-icons search">&#xE8B6;</i> Szybki podgląd
+              <i class="material-icons search">&#xE8B6;</i> Quick view
             </a>
           
 
@@ -567,8 +567,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
               
               
 
-              <span class="price" aria-label="Cena">
-                                                  71,99 zł
+              <span class="price" aria-label="Price">
+                                                  zł71.99
                               </span>
 
               
@@ -589,7 +589,7 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 
       
     <ul class="product-flags js-product-flags">
-                    <li class="product-flag new">Nowy</li>
+                    <li class="product-flag new">New</li>
             </ul>
 
     </div>
@@ -597,8 +597,8 @@ function content_674501b4227762_24028838 (Smarty_Internal_Template $_smarty_tpl)
 </div>
 
     </div>
-  <a class="all-product-link float-xs-left float-md-right h4" href="http://localhost:8080/2-produkty">
-    Wszystkie produkty<i class="material-icons">&#xE315;</i>
+  <a class="all-product-link float-xs-left float-md-right h4" href="http://localhost:8080/2-home">
+    All products<i class="material-icons">&#xE315;</i>
   </a>
 </section>
 <?php }

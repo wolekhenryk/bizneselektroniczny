@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-11-26 00:01:08
+/* Smarty version 3.1.48, created on 2024-11-26 17:44:12
   from 'module:pscustomeraccountlinkspsc' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_674501b42be1f1_25374497',
+  'unifunc' => 'content_6745fadc208fa8_26189136',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -18,7 +18,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   ),
   'cache_lifetime' => 31536000,
 ),true)) {
-function content_674501b42be1f1_25374497 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6745fadc208fa8_26189136 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->smarty->ext->_tplFunction->registerTplFunctions($_smarty_tpl, array (
   'renderLogo' => 
   array (
@@ -31,11 +31,11 @@ $_smarty_tpl->smarty->ext->_tplFunction->registerTplFunctions($_smarty_tpl, arra
 <div id="block_myaccount_infos" class="col-md-3 links wrapper">
   <p class="h3 myaccount-title hidden-sm-down">
     <a class="text-uppercase" href="http://localhost:8080/my-account" rel="nofollow">
-      Twoje konto
+      Your account
     </a>
   </p>
   <div class="title clearfix hidden-md-up" data-target="#footer_account_list" data-toggle="collapse">
-    <span class="h3">Twoje konto</span>
+    <span class="h3">Your account</span>
     <span class="float-xs-right">
       <span class="navbar-toggler collapse-icons">
         <i class="material-icons add">&#xE313;</i>
@@ -45,23 +45,23 @@ $_smarty_tpl->smarty->ext->_tplFunction->registerTplFunctions($_smarty_tpl, arra
   </div>
   <ul class="account-list collapse" id="footer_account_list">
             <li>
-          <a href="http://localhost:8080/identity" title="Dane osobowe" rel="nofollow">
-            Dane osobowe
+          <a href="http://localhost:8080/identity" title="Personal info" rel="nofollow">
+            Personal info
           </a>
         </li>
             <li>
-          <a href="http://localhost:8080/order-history" title="Zamówienia" rel="nofollow">
-            Zamówienia
+          <a href="http://localhost:8080/order-history" title="Orders" rel="nofollow">
+            Orders
           </a>
         </li>
             <li>
-          <a href="http://localhost:8080/credit-slip" title="Moje pokwitowania - korekty płatności" rel="nofollow">
-            Moje pokwitowania - korekty płatności
+          <a href="http://localhost:8080/credit-slip" title="Credit slips" rel="nofollow">
+            Credit slips
           </a>
         </li>
             <li>
-          <a href="http://localhost:8080/addresses" title="Adresy" rel="nofollow">
-            Adresy
+          <a href="http://localhost:8080/addresses" title="Addresses" rel="nofollow">
+            Addresses
           </a>
         </li>
         
