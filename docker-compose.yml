@@ -20,6 +20,7 @@ services:
       - mysql
     ports:
       - 8080:80
+      - 443:443
     environment:
       ADMIN_MAIL: admin@prestashop.com 
       ADMIN_PASSWD: admin123
@@ -28,12 +29,21 @@ services:
       DB_USER: root
       DB_PASSWD: admin
       PS_INSTALL_AUTO: 1
-      PS_DOMAIN: localhost:8080
+      PS_DOMAIN: localhost
       PS_FOLDER_ADMIN: admin123
     networks:
       - prestashop_network
     volumes:
       - ./prestashop:/var/www/html  # Dane PrestaShop, aby były trwałe
+      - ./ssl:/etc/ssl/private  # For SSL key
+      - ./ssl_certs:/etc/ssl/certs  # For SSL certificate
+      - ./config:/etc/apache2/sites-available  # For Apache configuration
+    command: >
+      /bin/bash -c "
+      update-ca-certificates &&
+      a2enmod ssl &&
+      a2ensite 000-default.conf &&
+      apachectl -D FOREGROUND"
 
 networks:
   prestashop_network:
