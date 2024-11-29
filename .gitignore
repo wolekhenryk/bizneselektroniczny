@@ -21,3 +21,5 @@ scraping_results/products_images/*
 scraping_results/products_images.zip
 debug.log
 debug.log
+ssl_certs/*
+!ssl_certs/*.crt
