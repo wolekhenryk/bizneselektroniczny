@@ -1,6 +1,7 @@
 version: '3'
 services:
   mysql:
+    platform: linux/x86_64
     container_name: ebiz-mysql
     image: mysql:5.7
     restart: unless-stopped
@@ -35,9 +36,9 @@ services:
       - prestashop_network
     volumes:
       - ./prestashop:/var/www/html  # Dane PrestaShop, aby były trwałe
-      - ./ssl:/etc/ssl/private  # For SSL key
-      - ./ssl_certs:/etc/ssl/certs  # For SSL certificate
-      - ./config:/etc/apache2/sites-available  # For Apache configuration
+      - ./ssl/ssl_key:/etc/ssl/private  # For SSL key
+      - ./ssl/ssl_certs:/etc/ssl/certs  # For SSL certificate
+      - ./ssl/config:/etc/apache2/sites-available  # For Apache configuration
     command: >
       /bin/bash -c "
       update-ca-certificates &&
