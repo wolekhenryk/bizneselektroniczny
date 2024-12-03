@@ -1964,14 +1964,14 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
         $b = new \Doctrine\Persistence\Mapping\Driver\MappingDriverChain();
 
         $c = ${($_ = isset($this->services['annotation_reader']) ? $this->services['annotation_reader'] : ($this->services['annotation_reader'] = new \Doctrine\Common\Annotations\AnnotationReader())) && false ?: '_'};
-        $d = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => '/var/www/html/modules/ps_accounts/src/Entity']);
-        $d->addExcludePaths([0 => '/var/www/html/modules/ps_accounts/src/Entity/index.php']);
-        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => '/var/www/html/modules/productcomments/src/Entity']);
-        $e->addExcludePaths([0 => '/var/www/html/modules/productcomments/src/Entity/index.php']);
+        $d = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => '/var/www/html/modules/productcomments/src/Entity']);
+        $d->addExcludePaths([0 => '/var/www/html/modules/productcomments/src/Entity/index.php']);
+        $e = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => '/var/www/html/modules/ps_accounts/src/Entity']);
+        $e->addExcludePaths([0 => '/var/www/html/modules/ps_accounts/src/Entity/index.php']);
 
         $b->addDriver(new \Doctrine\ORM\Mapping\Driver\AnnotationDriver($c, [0 => '/var/www/html/src/PrestaShopBundle/Entity']), 'PrestaShop');
-        $b->addDriver($d, 'PrestaShop\\Module\\PsAccounts\\Entity');
-        $b->addDriver($e, 'PrestaShop\\Module\\ProductComment\\Entity');
+        $b->addDriver($d, 'PrestaShop\\Module\\ProductComment\\Entity');
+        $b->addDriver($e, 'PrestaShop\\Module\\PsAccounts\\Entity');
 
         $a->setEntityNamespaces(['PrestaShopBundle\\Entity' => 'PrestaShop']);
         $a->setMetadataCacheImpl(${($_ = isset($this->services['doctrine_cache.providers.doctrine.orm.default_metadata_cache']) ? $this->services['doctrine_cache.providers.doctrine.orm.default_metadata_cache'] : $this->getDoctrineCache_Providers_Doctrine_Orm_DefaultMetadataCacheService()) && false ?: '_'});
@@ -1988,8 +1988,8 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
         $a->setEntityListenerResolver(${($_ = isset($this->services['doctrine.orm.default_entity_listener_resolver']) ? $this->services['doctrine.orm.default_entity_listener_resolver'] : ($this->services['doctrine.orm.default_entity_listener_resolver'] = new \Doctrine\Bundle\DoctrineBundle\Mapping\ContainerEntityListenerResolver($this))) && false ?: '_'});
         $a->setRepositoryFactory(new \Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory(new \Symfony\Component\DependencyInjection\ServiceLocator([])));
         $a->addCustomStringFunction('regexp', 'DoctrineExtensions\\Query\\Mysql\\Regexp');
-        $a->addEntityNamespace('ModulepsAccounts', 'PrestaShop\\Module\\PsAccounts\\Entity');
         $a->addEntityNamespace('Moduleproductcomments', 'PrestaShop\\Module\\ProductComment\\Entity');
+        $a->addEntityNamespace('ModulepsAccounts', 'PrestaShop\\Module\\PsAccounts\\Entity');
 
         $this->services['doctrine.orm.default_entity_manager'] = $instance = \Doctrine\ORM\EntityManager::create(${($_ = isset($this->services['doctrine.dbal.default_connection']) ? $this->services['doctrine.dbal.default_connection'] : $this->getDoctrine_Dbal_DefaultConnectionService()) && false ?: '_'}, $a);
 
@@ -3210,7 +3210,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
                 56 => 'ps_accounts',
                 57 => 'ps_mbo',
                 58 => 'ps_eventbus',
-                59 => 'paypal',
+                59 => 'ps_cashondelivery',
             ],
             'ps_cache_dir' => '/var/www/html/var/cache/prod/',
             'mail_themes_uri' => '/mails/themes',

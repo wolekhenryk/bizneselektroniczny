@@ -21,3 +21,6 @@ scraping_results/products_images/*
 scraping_results/products_images.zip
 debug.log
 debug.log
+/prestashop/var/cache
+/ssl/ssl_certs
+!/ssl/ssl_certs/*.crt
