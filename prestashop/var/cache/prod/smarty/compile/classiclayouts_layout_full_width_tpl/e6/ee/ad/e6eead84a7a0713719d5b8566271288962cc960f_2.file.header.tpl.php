@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-12-04 16:27:57
+/* Smarty version 3.1.48, created on 2024-12-05 00:13:32
   from '/var/www/html/themes/classic/templates/_partials/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_675074fd25a950_69008563',
+  'unifunc' => 'content_6750e21ce6ab19_67797678',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e6eead84a7a0713719d5b8566271288962cc960f' => 
     array (
       0 => '/var/www/html/themes/classic/templates/_partials/header.tpl',
-      1 => 1733257590,
+      1 => 1733353867,
       2 => 'file',
     ),
   ),
@@ -20,30 +20,52 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_675074fd25a950_69008563 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6750e21ce6ab19_67797678 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_2012332135675074fd2185c3_38488997', 'header_banner');
+?>
+ 
+<link href="https://fonts.cdnfonts.com/css/blogger-sans" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['theme_assets']->value, ENT_QUOTES, 'UTF-8');?>
+/css/custom.css" type="text/css" media="all" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+
+
+<?php 
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_8419252686750e21ce2dd35_40620650', 'header_banner');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_104644671675074fd218da9_06270814', 'header_nav');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_164494526750e21ce2e611_19521685', 'header');
 ?>
 
 
-<?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_925549103675074fd219596_31791624', 'header_top');
-?>
 
-<?php }
+<style>
+  @font-face {
+    font-family: 'Blogger Sans Medium';
+    src: url('<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/fonts/blogger-sans.medium.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Blogger Sans Regular';
+    src: url('<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/fonts/blogger-sans.regular.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+  }
+</style><?php }
 /* {block 'header_banner'} */
-class Block_2012332135675074fd2185c3_38488997 extends Smarty_Internal_Block
+class Block_8419252686750e21ce2dd35_40620650 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header_banner' => 
   array (
-    0 => 'Block_2012332135675074fd2185c3_38488997',
+    0 => 'Block_8419252686750e21ce2dd35_40620650',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -57,63 +79,85 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 }
 /* {/block 'header_banner'} */
-/* {block 'header_nav'} */
-class Block_104644671675074fd218da9_06270814 extends Smarty_Internal_Block
+/* {block 'header'} */
+class Block_164494526750e21ce2e611_19521685 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
-  'header_nav' => 
+  'header' => 
   array (
-    0 => 'Block_104644671675074fd218da9_06270814',
+    0 => 'Block_164494526750e21ce2e611_19521685',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
-  <nav class="header-nav">
-    <div class="container">
-      <div class="row">
-        <div class="hidden-sm-down">
-          <div class="col-md-5 col-xs-12">
-            <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0], array( array('h'=>'displayNav1'),$_smarty_tpl ) );?>
+<header class="header">
+  <!-- Pasek promocyjny -->
 
-          </div>
-          <div class="col-md-7 right-nav">
-              <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0], array( array('h'=>'displayNav2'),$_smarty_tpl ) );?>
-
-          </div>
+  <!-- Pasek promocyjny -->
+  <div class="promo-bar">
+    <div class="promo-content">
+      <strong>Wielka promocja Black Week!</strong>
+      <div id="counter" class="d-flex align-items-center">
+        <div class="time-unit day">
+          <span>4</span>DNI
         </div>
-        <div class="hidden-md-up text-sm-center mobile">
-          <div class="float-xs-left" id="menu-icon">
-            <i class="material-icons d-inline">&#xE5D2;</i>
-          </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
-          <div class="float-xs-right" id="_mobile_user_info"></div>
-          <div class="top-logo" id="_mobile_logo"></div>
-          <div class="clearfix"></div>
+        <div class="time-unit hour">
+          <span>2</span>GODZ
+        </div>
+        <div class="time-unit min">
+          <span>16</span> MIN
+        </div>
+        <div class="time-unit sek">
+          <span style="background-color: #ea2221;">15</span> SEK
         </div>
       </div>
+      <div class="btn-wrap">
+        <a class="my-btn radius" href="https://www.atomcomics.pl/kategoria/weekendowa-promocja">ZOBACZ »</a>
+      </div>
     </div>
-  </nav>
-<?php
-}
-}
-/* {/block 'header_nav'} */
-/* {block 'header_top'} */
-class Block_925549103675074fd219596_31791624 extends Smarty_Internal_Block
-{
-public $subBlocks = array (
-  'header_top' => 
-  array (
-    0 => 'Block_925549103675074fd219596_31791624',
-  ),
-);
-public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
-?>
+  </div>
 
-  <div class="header-top">
-    <div class="container">
-       <div class="row">
-        <div class="col-md-2 hidden-sm-down" id="_desktop_logo">
+
+
+  <!-- Górny pasek kontaktowy -->
+  <div class="top-bar">
+    <div class="custom-container container d-flex align-items-center justify-content-between" id="login-bar">
+      <!-- Grupa 1: Sekcja kontaktowa po lewej -->
+      <div class="top-bar-left">
+        <strong><a href="mailto:sklep@atomcomics.pl" class="email"><img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/footer_ico_mail.png" alt="Najnowsza dostawa"> SKLEP@ATOMCOMICT.PL</a></strong>
+        <a href="tel:795441424" class="phone"><img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/footer_ico_tel.png" alt="Najnowsza dostawa"> 795 441 424</a>
+      </div>
+
+      <!-- Grupa 2: Linki na środku -->
+      <div class="top-bar-center">
+        <a href="#">INFORMACJE</a>
+        <span class="separator">:</span>
+        <a href="#">ATOMOWY BLOG</a>
+        <span class="separator">:</span>
+        <a href="#">#52KOMIKSY</a>
+        <span class="separator">:</span>
+        <a href="#">ODWIEDŹ NAS W KRAKOWIE</a>
+      </div>
+
+      <!-- Grupa 3: Linki po prawej -->
+      <div class="top-bar-right">
+        <a href="#">ZAREJESTRUJ SIĘ</a>
+        <span class="separator">:</span>
+        <a href="#">ZALOGUJ SIĘ</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Główny pasek nawigacyjny -->
+  <div class="main-header">
+    <div class="container custom-container">
+      <!-- Pierwsza linia -->
+      <div class="row header-row align-items-center py-2">
+        <!-- Logo -->
+        <div class="col-md-2" id="_desktop_logo">
           <?php if ($_smarty_tpl->tpl_vars['shop']->value['logo_details']) {?>
             <?php if ($_smarty_tpl->tpl_vars['page']->value['page_name'] == 'index') {?>
               <h1>
@@ -126,25 +170,103 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
             <?php }?>
           <?php }?>
         </div>
-        <div class="header-top-right col-md-10 col-sm-12 position-static">
-          <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0], array( array('h'=>'displayTop'),$_smarty_tpl ) );?>
 
+        <!-- Wyszukiwarka -->
+        <div class="col-md-7">
+          <form action="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['urls']->value['pages']['search'], ENT_QUOTES, 'UTF-8');?>
+" method="get" class="search-bar">
+            <input type="text" name="s" placeholder="Wpisz tytuł, autora lub nazwę" />
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+        </div>
+
+        <!-- Koszyk -->
+        <div class="col-md-3 d-flex justify-content-end align-items-center">
+          <div class="cart-info">
+            <a href="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['urls']->value['pages']['cart'], ENT_QUOTES, 'UTF-8');?>
+">
+              <img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/basket_ico.png" alt="Najnowsza dostawa"> <span class="cart-count">0</span> 0,00 zł
+            </a>
+          </div>
         </div>
       </div>
-      <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
-        <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
-        <div class="js-top-menu-bottom">
-          <div id="_mobile_currency_selector"></div>
-          <div id="_mobile_language_selector"></div>
-          <div id="_mobile_contact_link"></div>
+
+      <!-- Druga linia -->
+      <div class="row header-row">
+        <div class="col-12">
+          <nav class="menu d-flex justify-content-between align-items-center">
+            <div class="menu-item">
+              <a href="#">PREZENT <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">24H <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">WYDANIA ZBIORCZE <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">ZESZYTÓWKI <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">KOMIKSY <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">MANGI I NOWELKI <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">DLA KOLEKCJONERA <span class="arrow">⬇</span></a>
+              <div class="dropdown">
+                <a href="#">Opcja 1</a>
+                <a href="#">Opcja 2</a>
+              </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">PREORDERY <span class="arrow">⬇</span></a>
+                <div class="dropdown">
+                  <a href="#">Opcja 1</a>
+                  <a href="#">Opcja 2</a>
+                </div>
+            </div>
+            <div class="menu-item">
+              <a href="#">NOWOŚCI <span class="arrow">⬇</span></a>
+                <div class="dropdown">
+                  <a href="#">Opcja 1</a>
+                  <a href="#">Opcja 2</a>
+                </div>
+            </div>
+          </nav>
         </div>
       </div>
     </div>
   </div>
-  <?php echo call_user_func_array( $_smarty_tpl->smarty->registered_plugins[Smarty::PLUGIN_FUNCTION]['hook'][0], array( array('h'=>'displayNavFullWidth'),$_smarty_tpl ) );?>
-
+</header>
 <?php
 }
 }
-/* {/block 'header_top'} */
+/* {/block 'header'} */
 }
