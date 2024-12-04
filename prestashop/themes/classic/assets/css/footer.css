@@ -1,0 +1,66 @@
+/* Styl ogólny stopki */
+.upper-footer-box {
+    background-color: #009cdb; /* Kolor tła */
+    padding: 20px 0;
+    color: white;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Siatka 4 kolumn */
+  .upper-footer-box .container {
+    margin: 0 auto;
+  }
+  
+  .upper-footer-box .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .upper-footer-box .col-3 {
+    width: 23%; /* Ustalamy szerokość na 4 kolumny w rzędzie */
+    text-align: center;
+  }
+  
+  .single-col-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .single-col-wrapper img {
+    max-width: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .single-col-wrapper span {
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  /* Style dla większych ekranów (odpowiednia responsywność) */
+  @media (max-width: 992px) {
+    .upper-footer-box .row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .upper-footer-box .col-3 {
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .upper-footer-box .col-3 {
+      width: 100%;
+    }
+  
+    .single-col-wrapper span {
+      font-size: 12px;
+    }
+  
+    .single-col-wrapper img {
+      max-width: 30px;
+    }
+  }
+  
