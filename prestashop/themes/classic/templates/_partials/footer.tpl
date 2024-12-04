@@ -67,21 +67,21 @@
   }
   
   .upper-footer-box .col-3:first-child {
-    width: 32%; /* Pierwsza kolumna 25% */
+    width: 32%; 
     text-align: left;
   }
   
   .upper-footer-box .col-3:nth-child(2) {
-    width: 24%; /* Druga kolumna 24% */
+    width: 24%;
     text-align: left;
   }
   
   .upper-footer-box .col-3:nth-child(3) {
-    width: 22%; /* Trzecia kolumna 23% */
+    width: 22%;
   }
   
   .upper-footer-box .col-3:nth-child(4) {
-    width: 22%; /* Czwarta kolumna 22% */
+    width: 22%; 
     text-align: left;
   }
   
@@ -117,7 +117,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding: 40px;
+    padding-top: 40px;
   }
 
   .overall {
@@ -158,43 +158,84 @@
       border-radius: 10px;
   }
 
+  footer .userfooter {
+    margin-top: 20px;
+  }
+
   .userfooter.container {
-      background-color: #123456;
+      width: 60%;
       color: #fff;
       text-align: center;
-      padding: 10px 0;
+      padding-bottom: 20px;
   }
 
-  .userfooter .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  footer .userfooter a {
+    color: #3f7499;
+    font-size: 10px;
+    text-decoration: none;
   }
 
-  .userfooter .left, .userfooter .right {
-      font-size: 14px;
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
   }
 
   .second-row {
-      margin-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); 
+      width: 60%; 
+      margin: 0; 
+      padding: 0;
+      padding-top: 20px;
   }
 
-  .second-row .overall {
-      margin-bottom: 20px;
+  .about-us-map .map {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 190px;
+    background-image: url({$base_dir}/themes/classic/assets/img/map.png);
+    background-size: auto;
+    cursor: pointer;
   }
 
-  .second-row .head {
-      font-weight: bold;
-      margin-bottom: 10px;
-      font-size: 16px;
+  .map iframe {
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+  .stacjo {
+      grid-column: 3; 
+  }
+
+  .about-us {
+      grid-column: span 2; 
+  }
+
+  .about-us-map {
+      grid-column: span 2; 
+      padding-left: 40px;
+  }
+  
+  .second-row > .flex {
+      padding: 16px;
   }
 
   .second-row .aboutus p {
-      font-size: 14px;
-      line-height: 1.6;
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 19px;
+    padding: 0 85px 0 0;
   }
 
   .second-row .with-ico {
@@ -246,8 +287,64 @@
     margin-left: 4px;
     margin-right: 14px;
   }
+
+  .stacjo .with-ico p {
+    color: #ffffff;
+    font-size: 13px;
+    line-height: 19px;
+  }
+
+  footer.footer .innerfooter .clear {
+    height: 2px;
+    background-color: #244c68;
+    opacity: 0.5;
+    margin-top: 20px;
+    width: 60%;
+  }
+
+  .clear {
+    clear: both;
+    display: block;
+  }
+
+  .bottom-footer-row {
+    background: #fff;
+  }
+
 </style>
 
+<div class="bottom-footer-row">
+  <div class="bottom-footer-container">
+      <div class="box resetcss box_custom" id="bottom-banners">
+
+      </div>
+      <div class="box resetcss box_custom" id="seo-text">
+          <div class="f-row">
+              <h1 style="text-align: justify;"><span style="font-weight: 400;">Atomcomics.pl – Twój sklep z komiksami!</span></h1>
+              <p style="text-align: justify;"><span style="font-weight: 400;">Witamy Cię w </span><strong>Atom Comics -</strong><span style="font-weight: 400;"> sklepie tworzonym przez fanów dla fanów, ale również dla wszystkich, którzy dopiero rozpoczynają swoją komiksową przygodę! To najlepsze miejsce w sieci oferujące tak zróżnicowany wybór komiksów i gadżetów związanych z komiksowym światem. Nieważne czy jesteś komiksowym maniakiem, czy dopiero stawiasz w tym świecie pierwsze kroki – na pewno znajdziesz u nas to, czego szukasz! Oprócz szerokiej oferty zapewniamy atrakcyjne ceny i liczne promocje, gwarantujemy bezpieczne zakupy i umożliwiamy wybór wielu form dostawy, by zakupy były dla Ciebie jak najwygodniejsze. Dbamy o to, by każdy zamówiony produkt był w staranny sposób zapakowany i dotarł do Ciebie jak najszybciej i w jak najlepszym stanie! Przekonaj się sam i złóż pierwsze zamówienie!</span></p>
+              <h2 style="text-align: justify;"><span style="font-weight: 400;">Szeroki wybór komiksów polskich i amerykańskich!</span></h2>
+              <p style="text-align: justify;"><span style="font-weight: 400;">Atom Comics tworzyliśmy z myślą o wszystkich fanach komiksu. Dlatego w naszej ofercie znajduje się tak duża baza komiksów, zarówno tych w języku angielskim, jak i polskim - zaczynając od klasycznych, superbohaterskich komiksach amerykańskich, przez </span><a><span style="font-weight: 400;">polskie komiksy</span></a><span style="font-weight: 400;"> z najróżniejszych gatunków, kończąc na europejskich nowościach. Oferujemy popularne „zeszytówki”, które docierają do nas z USA co tydzień. Superhero, sci-fi, horror, fantastyka, komedia, historie obyczajowe, jak i te oparte na faktach – będziesz pozytywnie zaskoczony, jak wiele do zaoferowania ma komiksowy świat!</span></p>
+              <h2 style="text-align: justify;"><span style="font-weight: 400;">Nie tylko komiksy – gadżety i figurki ze świata komiksu</span></h2>
+              <p style="text-align: justify;"><strong>Komiksy</strong><span style="font-weight: 400;"> to dopiero początek. W naszym sklepie znajdziesz szereg figurek, statuetek, kubków, gier planszowych, puzzli oraz innych gadżetów związanych z komiksową popkulturą i grami komputerowymi. Warto sprawdzić osobną kategorię </span><a><span style="font-weight: 400;">figurki</span></a><span style="font-weight: 400;">, pełną kolekcjonerskich edycji. Wiemy także jak odpowiednio zabezpieczyć Twoją kolekcję – w dziale </span><a><span style="font-weight: 400;">materiałów ochronnych</span></a><span style="font-weight: 400;"> znajdziesz folie i tekturki ochronne na zeszyty w różnych rozmiarach, pudła, toploady, separatory oraz inne produkty najwyższej jakości!</span></p>
+              <h2 style="text-align: justify;"><span style="font-weight: 400;">Nowości komiksowe z USA co tydzień!</span></h2>
+              <p style="text-align: justify;"><span style="font-weight: 400;">Nowe komiksy z USA docierają do nas co tydzień już w dniu ich premiery w USA. Dzięki specjalnemu systemowi preorderów z wyprzedzeniem możesz zadbać o zaplanowanie zakupów, a także zarezerwowanie pożądanych serii. Oferujemy możliwość prenumeraty wybranych tytułów, a także płatność dopiero po skompletowaniu zamówienia! Jest to najlepsza opcja kolekcjonowania nowości, a także gwarancja tego, że gorące wydania będą dla Ciebie odpowiednio wcześnie zarezerwowane. Co piątek na naszym ATOMowym blogu publikujemy nowe listy F.O.C., a także zapowiedzi nowości.</span></p>
+              <h2 style="text-align: justify;"><span style="font-weight: 400;">Archiwalne komiksy na zamówienie i pomoc w zakupie</span></h2>
+              <p style="text-align: justify;"><span style="font-weight: 400;">Wiemy, jak ważne dla fanów potrafią być poszczególne wydania komiksów sprzed wielu lat. Dlatego oferujemy możliwość składania </span><a><span style="font-weight: 400;">zamówień specjalnych</span></a><span style="font-weight: 400;">, co pozwala zdobyć wiele rzadkich i starszych komiksowych zeszytów i wydań zbiorczych. Dysponujemy ogromną bazą archiwalną, więc napisz do nas już teraz, a my sprawdzimy, jak możemy pomóc Ci w uzupełnieniu kolekcji! Kontakt z nami może być także przydatny, jeśli czujesz się przytłoczony wyborem, a chcesz zacząć komiksową przygodą. W Atom Comics pracują sami miłośnicy komiksów, którzy z miłą chęcią polecą odpowiednie tytuły na początek!</span></p>
+          </div>
+      </div>
+      <div class="box" id="box_freeshipping">
+          <input type="hidden" id="freeshipping_data" data-free-shipping-price="199" data-no-items-text="Darmowa dostawa (Kurier Inpost 24h) już od 199,00 zł." data-above-free-text="Darmowa dostawa!" data-equal-free-text="Darmowa dostawa!" data-below-free-text="Do darmowej dostawy pozostało: " />
+          <div class="boxhead">
+              <span><img src="/public/images/1px.gif" alt="" class="px1">Darmowa dostawa</span>
+          </div>
+          <div class="innerbox">
+              <div class="arrow"><img src="/public/images/1px.gif" alt="" class="px1"></div>
+              Darmowa dostawa (Kurier Inpost 24h) już od 199,00 zł.
+          </div>
+      </div>
+
+  </div>
+</div>
  <div class="upper-footer-box">
   <div class="container">
     <div class="row">
@@ -278,7 +375,6 @@
     </div>
   </div>
 </div>
-
 <footer class="footer row">
   <div class="innerfooter container row">
      <ul class="overall">
@@ -353,7 +449,7 @@
         </li>
      </ul>
      <ul class="overall second-row">
-        <li class="overall flex flex-45">
+        <li class="about-us">
            <ul>
               <li class="head">ATOM COMICS</li>
               <li class="aboutus">
@@ -361,7 +457,7 @@
               </li>
            </ul>
         </li>
-        <li class="overall flex flex-5">
+        <li class="stacjo">
            <ul>
               <li class="head">Sklep stacjonarny</li>
               <li class="with-ico">
@@ -374,13 +470,21 @@
               </li>
            </ul>
         </li>
-        <li class="overall flex flex-45">
-            <ul>
-              <li class="head">ATOM COMICS</li>
-              <li class="aboutus">
-                <p>ATOM Comics to sklep oferujący szeroki wybór amerykańskich oraz polskich komiksów, a także związanych z nimi gadżetów, figurek i innych produktów. Naszym celem było stworzenie miejsca, w którym fani komiksu będą mogli zaopatrzyć się zarówno w nowości wydawane co środę w USA, jak i pozycje archiwalne oraz polskojęzyczne wydania. Jako jedyna firma w Polsce, wszystkie nowości komiksowe z USA otrzymujemy i wysyłamy na dzień przed ich premierą w Stanach Zjednoczonych. Na zamówienia specjalne sprowadzamy komiksy nawet z lat 50 XX wieku.</p>
-              </li>
-            </ul>
+        <li class="about-us-map">
+          <a class="map" href="https://g.page/atomsklepkomiksowy?share" id="iframe-to-place">
+            <script>
+              let iframe = document.createElement("iframe");
+              iframe.src =
+                "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d320.14632507326996!2d19.9449219!3d50.0643666!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471643df75a0c071%3A0xf3b07657ead3f60c!2sATOM%20Comics%20-%20Sklep%20z%20Komiksami!5e0!3m2!1spl!2spl!4v1573634359413!5m2!1spl!2spl";
+              iframe.width = "100%";
+              iframe.height = "200px";
+              iframe.style.border = "0";
+              iframe.allowFullscreen = true;
+              iframe.loading = "lazy";
+
+              document.getElementById("iframe-to-place").appendChild(iframe);
+            </script>
+          </a>
         </li>
      </ul>
      <div class="clear"></div>
