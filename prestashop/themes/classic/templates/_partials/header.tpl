@@ -1,87 +1,202 @@
-{**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
-{block name='header_banner'}
-  <div class="header-banner">
-    {hook h='displayBanner'}
-  </div>
-{/block}
-
-{block name='header_nav'}
-  <nav class="header-nav">
-    <div class="container">
-      <div class="row">
-        <div class="hidden-sm-down">
-          <div class="col-md-5 col-xs-12">
-            {hook h='displayNav1'}
-          </div>
-          <div class="col-md-7 right-nav">
-              {hook h='displayNav2'}
-          </div>
-        </div>
-        <div class="hidden-md-up text-sm-center mobile">
-          <div class="float-xs-left" id="menu-icon">
-            <i class="material-icons d-inline">&#xE5D2;</i>
-          </div>
-          <div class="float-xs-right" id="_mobile_cart"></div>
-          <div class="float-xs-right" id="_mobile_user_info"></div>
-          <div class="top-logo" id="_mobile_logo"></div>
-          <div class="clearfix"></div>
-        </div>
-      </div>
-    </div>
-  </nav>
-{/block}
-
-{block name='header_top'}
-  <div class="header-top">
-    <div class="container">
-       <div class="row">
-        <div class="col-md-2 hidden-sm-down" id="_desktop_logo">
-          {if $shop.logo_details}
-            {if $page.page_name == 'index'}
-              <h1>
-                {renderLogo}
-              </h1>
-            {else}
-              {renderLogo}
-            {/if}
-          {/if}
-        </div>
-        <div class="header-top-right col-md-10 col-sm-12 position-static">
-          {hook h='displayTop'}
-        </div>
-      </div>
-      <div id="mobile_top_menu_wrapper" class="row hidden-md-up" style="display:none;">
-        <div class="js-top-menu mobile" id="_mobile_top_menu"></div>
-        <div class="js-top-menu-bottom">
-          <div id="_mobile_currency_selector"></div>
-          <div id="_mobile_language_selector"></div>
-          <div id="_mobile_contact_link"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  {hook h='displayNavFullWidth'}
-{/block}
+{** 
+  * Copyright since 2007 PrestaShop SA and Contributors
+  * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
+  *}
+ 
+ <link href="https://fonts.cdnfonts.com/css/blogger-sans" rel="stylesheet">
+ <link rel="stylesheet" href="{$theme_assets}/css/custom.css" type="text/css" media="all" />
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
+ 
+ 
+ {block name='header_banner'}
+   <div class="header-banner">
+     {hook h='displayBanner'}
+   </div>
+ {/block}
+ 
+ {block name='header'}
+ <header class="header">
+   <!-- Pasek promocyjny -->
+ 
+   <!-- Pasek promocyjny -->
+   <div class="promo-bar">
+     <div class="promo-content">
+       <strong>Wielka promocja Black Week!</strong>
+       <div id="counter" class="d-flex align-items-center">
+         <div class="time-unit day">
+           <span>4</span>DNI
+         </div>
+         <div class="time-unit hour">
+           <span>2</span>GODZ
+         </div>
+         <div class="time-unit min">
+           <span>16</span> MIN
+         </div>
+         <div class="time-unit sek">
+           <span style="background-color: #ea2221;">15</span> SEK
+         </div>
+       </div>
+       <div class="btn-wrap">
+         <a class="my-btn radius" href="https://www.atomcomics.pl/kategoria/weekendowa-promocja">ZOBACZ »</a>
+       </div>
+     </div>
+   </div>
+ 
+ 
+ 
+   <!-- Górny pasek kontaktowy -->
+   <div class="top-bar">
+     <div class="custom-container container d-flex align-items-center justify-content-between" id="login-bar">
+       <!-- Grupa 1: Sekcja kontaktowa po lewej -->
+       <div class="top-bar-left">
+         <strong><a href="mailto:sklep@atomcomics.pl" class="email"><img src="{$base_dir}/themes/classic/assets/img/footer_ico_mail.png" alt="Najnowsza dostawa"> SKLEP@ATOMCOMICT.PL</a></strong>
+         <a href="tel:795441424" class="phone"><img src="{$base_dir}/themes/classic/assets/img/footer_ico_tel.png" alt="Najnowsza dostawa"> 795 441 424</a>
+       </div>
+ 
+       <!-- Grupa 2: Linki na środku -->
+       <div class="top-bar-center">
+         <a href="#">INFORMACJE</a>
+         <span class="separator">:</span>
+         <a href="#">ATOMOWY BLOG</a>
+         <span class="separator">:</span>
+         <a href="#">#52KOMIKSY</a>
+         <span class="separator">:</span>
+         <a href="#">ODWIEDŹ NAS W KRAKOWIE</a>
+       </div>
+ 
+       <!-- Grupa 3: Linki po prawej -->
+       <div class="top-bar-right">
+         <a href="#">ZAREJESTRUJ SIĘ</a>
+         <span class="separator">:</span>
+         <a href="#">ZALOGUJ SIĘ</a>
+       </div>
+     </div>
+   </div>
+ 
+   <!-- Główny pasek nawigacyjny -->
+   <div class="main-header">
+     <div class="container custom-container">
+       <!-- Pierwsza linia -->
+       <div class="row header-row align-items-center py-2">
+         <!-- Logo -->
+         <div class="col-md-2" id="_desktop_logo">
+           {if $shop.logo_details}
+             {if $page.page_name == 'index'}
+               <h1>
+                 {renderLogo}
+               </h1>
+             {else}
+               {renderLogo}
+             {/if}
+           {/if}
+         </div>
+ 
+         <!-- Wyszukiwarka -->
+         <div class="col-md-7">
+           <form action="{$urls.pages.search}" method="get" class="search-bar">
+             <input type="text" name="s" placeholder="Wpisz tytuł, autora lub nazwę" />
+             <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+           </form>
+         </div>
+ 
+         <!-- Koszyk -->
+         <div class="col-md-3 d-flex justify-content-end align-items-center">
+           <div class="cart-info">
+             <a href="{$urls.pages.cart}">
+               <img src="{$base_dir}/themes/classic/assets/img/basket_ico.png" alt="Najnowsza dostawa"> <span class="cart-count">0</span> 0,00 zł
+             </a>
+           </div>
+         </div>
+       </div>
+ 
+       <!-- Druga linia -->
+       <div class="row header-row">
+         <div class="col-12">
+           <nav class="menu d-flex justify-content-between align-items-center">
+             <div class="menu-item">
+               <a href="#">PREZENT <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">24H <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">WYDANIA ZBIORCZE <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">ZESZYTÓWKI <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">KOMIKSY <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">MANGI I NOWELKI <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">DLA KOLEKCJONERA <span class="arrow">⬇</span></a>
+               <div class="dropdown">
+                 <a href="#">Opcja 1</a>
+                 <a href="#">Opcja 2</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">PREORDERY <span class="arrow">⬇</span></a>
+                 <div class="dropdown">
+                   <a href="#">Opcja 1</a>
+                   <a href="#">Opcja 2</a>
+                 </div>
+             </div>
+             <div class="menu-item">
+               <a href="#">NOWOŚCI <span class="arrow">⬇</span></a>
+                 <div class="dropdown">
+                   <a href="#">Opcja 1</a>
+                   <a href="#">Opcja 2</a>
+                 </div>
+             </div>
+           </nav>
+         </div>
+       </div>
+     </div>
+   </div>
+ </header>
+ {/block}
+ 
+ 
+ <style>
+   @font-face {
+     font-family: 'Blogger Sans Medium';
+     src: url('{$base_dir}/themes/classic/assets/fonts/blogger-sans.medium.ttf') format('truetype');
+     font-weight: 300;
+     font-style: normal;
+   }
+ 
+   @font-face {
+     font-family: 'Blogger Sans Regular';
+     src: url('{$base_dir}/themes/classic/assets/fonts/blogger-sans.regular.ttf') format('truetype');
+     font-weight: 300;
+     font-style: normal;
+   }
+ </style>

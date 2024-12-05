@@ -1,29 +1,7 @@
-{**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
+<link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
 
 {if $homeslider.slides}
+  <div id="carousel-wrapper">
   <div id="carousel" data-ride="carousel" class="carousel slide" data-interval="{$homeslider.speed}" data-wrap="{(string)$homeslider.wrap}" data-pause="{$homeslider.pause}" data-touch="true">
     <ol class="carousel-indicators">
       {foreach from=$homeslider.slides item=slide key=idxSlide name='homeslider'}
@@ -60,4 +38,134 @@
       </a>
     </div>
   </div>
+  </div>
+
+  
+  <!-- Pasek pod sliderem -->
+  <div class="below-slider-bar">
+    <div class="container">
+      <div class="row header-row">
+        <!-- Lewa strona -->
+        <div class="col-4 left-section">
+          <h2 class="title">Najnowsze katalogi<br>Preorder</h2>
+        </div>
+        
+        <!-- Środkowa część -->
+        <div class="col-4 middle-section">
+          <ul class="catalog-links">
+            <li><a href="#">LUTY 2025</a></li>
+            <li><a href="#">STYCZEŃ 2025</a></li>
+            <li><a href="#">GRUDZIEŃ 2024</a></li>
+            <li><a href="#">LISTOPAD 2024</a></li>
+          </ul>
+        </div>
+        
+        <!-- Prawa strona -->
+        <div class="col-4 right-section">
+          <img src="{$base_dir}/themes/classic/assets/img/najnowsza-dostawa.png" alt="Najnowsza dostawa">
+        </div>
+      </div>
+    </div>
+  </div>
 {/if}
+
+<style>
+  /* Ogólne style paska pod sliderem */
+  .below-slider-bar {
+    font-family: "Caveat Brush", cursive;
+    background-color: #103f5b;
+    padding-bottom: 25px;
+  }
+
+  /* Styl dla równej linii elementów */
+  .below-slider-bar .row {
+    display: flex;
+    justify-content: space-between; /* Elementy rozmieszczone na całą szerokość */
+    align-items: center; /* Wyśrodkowanie w pionie */
+  }
+
+  /* Lewa sekcja */
+  .below-slider-bar .left-section .title {
+    font-family: "Caveat Brush", cursive;
+    color: white;
+    font-size: 25px;
+    margin: 0;
+    line-height: 1.5;
+    font-weight: normal;
+  }
+
+  /* Środkowa sekcja */
+  .below-slider-bar .middle-section .catalog-links {
+        font-size: 22px;
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .below-slider-bar .middle-section .catalog-links li {
+    display: inline-block;
+  }
+
+  .below-slider-bar .middle-section .catalog-links a {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: white;
+    color: #119ee1;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+
+  .below-slider-bar .middle-section .catalog-links a:hover {
+    background-color: #119ee1;
+    color: white;
+  }
+
+  /* Prawa sekcja */
+  .below-slider-bar .right-section img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Slider - usunięcie marginesów */
+  #carousel {
+    background-color: #103f5b;
+    margin-bottom: 0;
+      max-width: 1110px; /* Maksymalna szerokość slidera */
+  margin: 0 auto; /* Automatyczne marginesy po bokach */
+  padding: 0; /* Brak dodatkowych odstępów */
+  }
+
+
+  .below-slider-bar {
+    margin-top: 0;
+  }
+  .carousel-inner{
+    margin-bottom: 0;
+  }
+  #carousel-wrapper,
+.below-slider-bar {
+  margin: 0;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#carousel-wrapper {
+  margin-bottom: 0;
+    background-color: #103f5b;
+
+       width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.below-slider-bar {
+  margin-top: 0;
+}
+
+
+</style>

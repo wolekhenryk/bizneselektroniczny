@@ -22,7 +22,3 @@
  * @copyright Since 2007 PrestaShop SA and Contributors
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
-
-<div id="custom-text">
-  {$cms_infos.text nofilter}
-</div>
