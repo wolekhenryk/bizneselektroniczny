@@ -15,7 +15,7 @@
     justify-content: space-between; /* Rozdzielenie grup */
     flex-direction: row;
     align-items: center;
-    width:60%;
+    width:62.5%;
     margin: 0 auto;
     padding: 0 0;
 }
@@ -221,7 +221,7 @@
 }
 
 .header-row{
-    width: 60%;
+    width: 62.5%;
     margin: 0 auto;
     padding: 0 0;
 }

@@ -183,7 +183,7 @@
 #carousel{
   padding: 0 0;
   margin: 0 auto;
-  width: 60%;
+  width: 62.5%;
 }
 
 #thin-bar{
