@@ -1,4 +1,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="{$theme_assets}/css/custom.css" type="text/css" media="all" />
+
 
 {if $homeslider.slides}
   <div id="carousel-wrapper">
@@ -44,10 +46,10 @@
   <!-- Pasek pod sliderem -->
   <div class="below-slider-bar">
     <div class="container">
-      <div class="row header-row">
+      <div id="below-slider" class="row custom-row header-row">
         <!-- Lewa strona -->
         <div class="col-4 left-section">
-          <h2 class="title">Najnowsze katalogi<br>Preorder</h2>
+          <h2 id="below-slider-title" class="title">Najnowsze katalogi<br>Preorder</h2>
         </div>
         
         <!-- Środkowa część -->
@@ -67,6 +69,8 @@
       </div>
     </div>
   </div>
+
+  <div id="thin-bar"></div>
 {/if}
 
 <style>
@@ -74,7 +78,10 @@
   .below-slider-bar {
     font-family: "Caveat Brush", cursive;
     background-color: #103f5b;
-    padding-bottom: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
   /* Styl dla równej linii elementów */
@@ -111,12 +118,16 @@
 
   .below-slider-bar .middle-section .catalog-links a {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 0 14px;
     background-color: white;
     color: #119ee1;
     text-decoration: none;
     border-radius: 5px;
     transition: all 0.3s;
+    line-height: 38px;
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   .below-slider-bar .middle-section .catalog-links a:hover {
@@ -132,7 +143,6 @@
 
   /* Slider - usunięcie marginesów */
   #carousel {
-    background-color: #103f5b;
     margin-bottom: 0;
       max-width: 1110px; /* Maksymalna szerokość slidera */
   margin: 0 auto; /* Automatyczne marginesy po bokach */
@@ -146,7 +156,10 @@
   .carousel-inner{
     margin-bottom: 0;
   }
-  #carousel-wrapper,
+  #carousel-wrapper{
+      background: rgba(2, 41, 68, 0.8);
+
+  }
 .below-slider-bar {
   margin: 0;
   width: 100vw;
@@ -167,5 +180,29 @@
   margin-top: 0;
 }
 
+#carousel{
+  padding: 0 0;
+  margin: 0 auto;
+  width: 60%;
+}
+
+#thin-bar{
+  padding: 10px 0;
+  margin: 0 0;
+  width: 100%;
+  background: rgba(2, 41, 68, 0.8)
+}
+
+#below-slider{
+  padding: 0 5px;
+}
+
+
+#below-slider-title{
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: 1.08px;
+  line-height: 25px;
+}
 
 </style>
