@@ -16,9 +16,7 @@
  
  {block name='header'}
  <header class="header">
-   <!-- Pasek promocyjny -->
- 
-   <!-- Pasek promocyjny -->
+  <div class="header-container">
    <div class="promo-bar">
      <div class="promo-content">
        <strong>Wielka promocja Black Week!</strong>
@@ -49,7 +47,7 @@
      <div class="custom-container container d-flex align-items-center justify-content-between" id="login-bar">
        <!-- Grupa 1: Sekcja kontaktowa po lewej -->
        <div class="top-bar-left">
-         <strong><a href="mailto:sklep@atomcomics.pl" class="email"><img src="{$base_dir}/themes/classic/assets/img/footer_ico_mail.png" alt="Najnowsza dostawa"> SKLEP@ATOMCOMICT.PL</a></strong>
+         <strong><a href="mailto:sklep@atomcomics.pl" class="email"><img src="{$base_dir}/themes/classic/assets/img/footer_ico_mail.png" alt="Najnowsza dostawa"> SKLEP@ATOMCOMICS.PL</a></strong>
          <a href="tel:795441424" class="phone"><img src="{$base_dir}/themes/classic/assets/img/footer_ico_tel.png" alt="Najnowsza dostawa"> 795 441 424</a>
        </div>
  
@@ -77,7 +75,7 @@
    <div class="main-header">
      <div class="container custom-container">
        <!-- Pierwsza linia -->
-       <div class="row header-row align-items-center py-2">
+       <div class="row header-row align-items-center py-2" id="r1">
          <!-- Logo -->
          <div class="col-md-2" id="_desktop_logo">
            {if $shop.logo_details}
@@ -110,70 +108,70 @@
        </div>
  
        <!-- Druga linia -->
-       <div class="row header-row">
+       <div class="row header-row" id="r2">
          <div class="col-12">
            <nav class="menu d-flex justify-content-between align-items-center">
              <div class="menu-item">
-               <a href="#">PREZENT <span class="arrow">⬇</span></a>
+               <a href="#">PREZENT<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">24H <span class="arrow">⬇</span></a>
+              <a href="#">24H<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">WYDANIA ZBIORCZE <span class="arrow">⬇</span></a>
+               <a href="#">WYDANIA ZBIORCZE<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">ZESZYTÓWKI <span class="arrow">⬇</span></a>
+               <a href="#">ZESZYTÓWKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">KOMIKSY <span class="arrow">⬇</span></a>
+               <a href="#">KOMIKSY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">MANGI I NOWELKI <span class="arrow">⬇</span></a>
+               <a href="#">MANGI I NOWELKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">DLA KOLEKCJONERA <span class="arrow">⬇</span></a>
+               <a href="#">DLA KOLEKCJONERA<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">PREORDERY <span class="arrow">⬇</span></a>
+               <a href="#">PREORDERY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
                    <a href="#">Opcja 1</a>
                    <a href="#">Opcja 2</a>
                  </div>
              </div>
              <div class="menu-item">
-               <a href="#">NOWOŚCI <span class="arrow">⬇</span></a>
+               <a href="#">NOWOŚCI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
                    <a href="#">Opcja 1</a>
-                   <a href="#">Opcja 2</a>
+                   <a href="#">Opcja 3</a>
                  </div>
              </div>
            </nav>
@@ -181,9 +179,19 @@
        </div>
      </div>
    </div>
+  </div>
  </header>
- {/block}
- 
+</div>
+{/block}
+
+<div class="slider-container">
+  <div class="slider">
+      <img src="{$base_dir}/themes/classic/assets/img/image1.jpg" alt="Image 1">
+      <img src="{$base_dir}/themes/classic/assets/img/image3.jpg" alt="Image 2">
+      <img src="{$base_dir}/themes/classic/assets/img/image2.jpg" alt="Image 3">
+      <img src="{$base_dir}/themes/classic/assets/img/image4.jpg" alt="Image 4">
+  </div>
+</div>
  
  <style>
    @font-face {
