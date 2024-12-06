@@ -2,7 +2,7 @@
   <h2 class="h2 products-section-title text-uppercase">
     hity najnowszej dostawy
   </h2>
-  <div class="swiper-container">
+  <div class="swiper-container autoplay-swiper">
     <div class="swiper-wrapper">
       {foreach from=$products item=product}
         <div class="swiper-slide">
@@ -10,17 +10,123 @@
         </div>
       {/foreach}
     </div>
-    <!-- Dodaj nawigację Swiper -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
   </div>
 </section>
 
+<div class="full-width-blue-bar">
+<img src="{$base_dir}/themes/classic/assets/img/blue-bar.jpeg" alt="Najnowsza dostawa">
+</div>
+
+<section class="featured-products clearfix">
+  <h2 class="h2 products-section-title text-uppercase">
+    <div class="products-section-title-item active pointer">TOP 7 OSTATNIEJ DOSTAWY</div>
+    <div class="products-section-title-item pointer">NOWOŚCI</div>
+    <div class="products-section-title-item pointer">PROMOCJA</div>
+  </h2>
+  <div class="swiper-container no-autoplay-swiper" style="margin-top:80px;">
+    <div class="swiper-wrapper">
+      {foreach from=$products item=product}
+        <div class="swiper-slide">
+          {include file="catalog/_partials/miniatures/product.tpl" product=$product}
+        </div>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+<div class="super-banner">
+  <img src="{$base_dir}/themes/classic/assets/img/banner-spider.png" alt="Najnowsza dostawa">
+  <img src="{$base_dir}/themes/classic/assets/img/banner-super.png" alt="Najnowsza dostawa">
+</div>
+
+<section class="featured-products clearfix">
+  <h2 class="h2 products-section-title text-uppercase">
+    Polecane produkty
+  </h2>
+  <div class="swiper-container no-autoplay-swiper">
+    <div class="swiper-wrapper">
+      {foreach from=$products item=product}
+        <div class="swiper-slide">
+          {include file="catalog/_partials/miniatures/product.tpl" product=$product}
+        </div>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+
+
 <style>
+
+   @font-face {
+     font-family: 'Blogger Sans Medium';
+     src: url('{$base_dir}/themes/classic/assets/fonts/blogger-sans.medium.ttf') format('truetype');
+     font-weight: 300;
+     font-style: normal;
+   }
+ 
+   @font-face {
+     font-family: 'Blogger Sans Regular';
+     src: url('{$base_dir}/themes/classic/assets/fonts/blogger-sans.regular.ttf') format('truetype');
+     font-weight: 300;
+     font-style: normal;
+   }
+
+.super-banner img:nth-child(2) {
+    margin-top: 5px;
+}
+
+.full-width-blue-bar {
+    position: absolute;
+    margin-top: 90px;
+    width: 100%; /* Cała szerokość strony */
+    height: 150px; /* Dostosuj wysokość według potrzeb */
+    z-index: -1; /* Ustaw pasek za innymi elementami */
+}
+
+section {
+    position: relative;
+}
+
+
 .featured-products {
     margin: 0 auto;
     padding: 0;
-    width: 60%; /* Większa szerokość dla większej liczby produktów */
+    width: 62.5%; /* Większa szerokość dla większej liczby produktów */
+}
+
+.products-section-title-item.active {
+  color: #009ee1;
+}
+
+.products-section-title-item{
+
+  display: inline-block;
+    margin-right: 45px;
+    z-index: 10;
+    position: relative;
+    color: #6a6969;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.super-banner{
+  margin: 0 auto;
+  padding: 0 0;
+  width:62.5%;
+  display:flex;
+  -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+}
+
+.super-banner img{
+  width: 50%;
+  height: auto;
+  margin: 0;
 }
 
 .products-section-title {
@@ -31,7 +137,6 @@
     letter-spacing: 1px;
     line-height: 16px;
     text-transform: uppercase;
-    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -48,22 +153,6 @@
     width: auto;
     padding: 10px; /* Odstęp wokół produktów */
 }
-
-.swiper-slide img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.swiper-button-next,
-.swiper-button-prev {
-    color: #022944;
-    opacity: 0.8;
-}
-
-.swiper-button-next:hover,
-.swiper-button-prev:hover {
-    opacity: 1;
-}
 </style>
 
 <!-- Dodaj Swiper JS -->
@@ -71,25 +160,49 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const swiper = new Swiper('.swiper-container', {
-      loop: true,
-      slidesPerView: 7, // Wyświetl 7 produktów jednocześnie
-      spaceBetween: 10, // Odstęp między slajdami
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      autoplay: {
-        delay: 4000, // Automatyczne przewijanie co 4 sekundy
-        disableOnInteraction: false,
-      },
-      breakpoints: {
-        320: { slidesPerView: 2 }, // Na małych ekranach
-        768: { slidesPerView: 4 }, // Na średnich ekranach
-        1024: { slidesPerView: 5 }, // Na dużych ekranach
-        1440: { slidesPerView: 7 }, // Na bardzo dużych ekranach
-      }
+document.addEventListener("DOMContentLoaded", function() {
+  // Pierwsza sekcja z autoplay
+  const swiperAutoplay = new Swiper('.autoplay-swiper', {
+    loop: true,
+    slidesPerView: 7, // Wyświetl 7 produktów jednocześnie
+    spaceBetween: 5, // Odstęp między slajdami
+    autoplay: {
+      delay: 4000, // Czas opóźnienia przed przejściem do kolejnego slajdu
+      disableOnInteraction: false, // Pozwala na kontynuowanie po interakcji użytkownika
+    },
+    breakpoints: {
+      320: { slidesPerView: 2 }, // Na małych ekranach
+      768: { slidesPerView: 4 }, // Na średnich ekranach
+      1024: { slidesPerView: 5 }, // Na dużych ekranach
+      1440: { slidesPerView: 7 }, // Na bardzo dużych ekranach
+    }
+  });
+
+  // Druga i trzecia sekcja bez autoplay
+  const swiperNoAutoplay = new Swiper('.no-autoplay-swiper', {
+    loop: true,
+    slidesPerView: 7, // Wyświetl 7 produktów jednocześnie
+    spaceBetween: 5, // Odstęp między slajdami
+    breakpoints: {
+      320: { slidesPerView: 2 }, // Na małych ekranach
+      768: { slidesPerView: 4 }, // Na średnich ekranach
+      1024: { slidesPerView: 5 }, // Na dużych ekranach
+      1440: { slidesPerView: 7 }, // Na bardzo dużych ekranach
+    }
+  });
+
+  // Obsługa kliknięć na elementy "TOP 7 OSTATNIEJ DOSTAWY", "NOWOŚCI", "PROMOCJA"
+  const titleItems = document.querySelectorAll('.products-section-title-item');
+
+  titleItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Usuń klasę 'active' z wszystkich elementów
+      titleItems.forEach(i => i.classList.remove('active'));
+      // Dodaj klasę 'active' do klikniętego elementu
+      item.classList.add('active');
     });
   });
+});
+
+
 </script>
