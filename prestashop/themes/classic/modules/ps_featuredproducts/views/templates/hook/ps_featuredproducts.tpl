@@ -1,34 +1,208 @@
-{**
- * Copyright since 2007 PrestaShop SA and Contributors
- * PrestaShop is an International Registered Trademark & Property of PrestaShop SA
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
- * that is bundled with this package in the file LICENSE.md.
- * It is also available through the world-wide-web at this URL:
- * https://opensource.org/licenses/AFL-3.0
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@prestashop.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
- * versions in the future. If you wish to customize PrestaShop for your
- * needs please refer to https://devdocs.prestashop.com/ for more information.
- *
- * @author    PrestaShop SA and Contributors <contact@prestashop.com>
- * @copyright Since 2007 PrestaShop SA and Contributors
- * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
- *}
 <section class="featured-products clearfix">
   <h2 class="h2 products-section-title text-uppercase">
-    {l s='Popular Products' d='Shop.Theme.Catalog'}
+    hity najnowszej dostawy
   </h2>
-  {include file="catalog/_partials/productlist.tpl" products=$products cssClass="row" productClass="col-xs-12 col-sm-6 col-lg-4 col-xl-3"}
-   {*<a class="all-product-link float-xs-left float-md-right h4" href="{$allProductsLink}">
-    {l s='All products' d='Shop.Theme.Catalog'}<i class="material-icons">&#xE315;</i>
-  </a>
-  *}
+  <div class="swiper-container autoplay-swiper">
+    <div class="swiper-wrapper">
+      {foreach from=$products item=product}
+        <div class="swiper-slide">
+          {include file="catalog/_partials/miniatures/product.tpl" product=$product}
+        </div>
+      {/foreach}
+    </div>
+  </div>
 </section>
+
+<div class="full-width-blue-bar">
+<img src="{$base_dir}/themes/classic/assets/img/blue-bar.jpeg" alt="Najnowsza dostawa">
+</div>
+
+<section class="featured-products clearfix">
+  <h2 class="h2 products-section-title text-uppercase">
+    <div class="products-section-title-item active pointer">TOP 7 OSTATNIEJ DOSTAWY</div>
+    <div class="products-section-title-item pointer">NOWOŚCI</div>
+    <div class="products-section-title-item pointer">PROMOCJA</div>
+  </h2>
+  <div class="swiper-container no-autoplay-swiper" style="margin-top:80px;">
+    <div class="swiper-wrapper">
+      {foreach from=$products item=product}
+        <div class="swiper-slide">
+          {include file="catalog/_partials/miniatures/product.tpl" product=$product}
+        </div>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+<div class="super-banner">
+  <img src="{$base_dir}/themes/classic/assets/img/banner-spider.png" alt="Najnowsza dostawa">
+  <img src="{$base_dir}/themes/classic/assets/img/banner-super.png" alt="Najnowsza dostawa">
+</div>
+
+<section class="featured-products clearfix">
+  <h2 class="h2 products-section-title text-uppercase">
+    Polecane produkty
+  </h2>
+  <div class="swiper-container no-autoplay-swiper">
+    <div class="swiper-wrapper">
+      {foreach from=$products item=product}
+        <div class="swiper-slide">
+          {include file="catalog/_partials/miniatures/product.tpl" product=$product}
+        </div>
+      {/foreach}
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+
+   @font-face {
+     font-family: 'Blogger Sans Medium';
+     src: url('{$base_dir}/themes/classic/assets/fonts/blogger-sans.medium.ttf') format('truetype');
+     font-weight: 300;
+     font-style: normal;
+   }
+ 
+   @font-face {
+     font-family: 'Blogger Sans Regular';
+     src: url('{$base_dir}/themes/classic/assets/fonts/blogger-sans.regular.ttf') format('truetype');
+     font-weight: 300;
+     font-style: normal;
+   }
+
+.super-banner img:nth-child(2) {
+    margin-top: 5px;
+}
+
+.full-width-blue-bar {
+    position: absolute;
+    margin-top: 90px;
+    width: 100%; /* Cała szerokość strony */
+    height: 150px; /* Dostosuj wysokość według potrzeb */
+    z-index: -1; /* Ustaw pasek za innymi elementami */
+}
+
+section {
+    position: relative;
+}
+
+
+.featured-products {
+    margin: 0 auto;
+    padding: 0;
+    width: 62.5%; /* Większa szerokość dla większej liczby produktów */
+}
+
+.products-section-title-item.active {
+  color: #009ee1;
+}
+
+.products-section-title-item{
+
+  display: inline-block;
+    margin-right: 45px;
+    z-index: 10;
+    position: relative;
+    color: #6a6969;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.super-banner{
+  margin: 0 auto;
+  padding: 0 0;
+  width:62.5%;
+  display:flex;
+  -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+
+}
+
+.super-banner img{
+  width: 50%;
+  height: auto;
+  margin: 0;
+}
+
+.products-section-title {
+    color: #022944;
+    font-family: "Caveat Brush";
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 16px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.swiper-container {
+    width: 100%;
+    overflow: hidden;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    padding: 10px; /* Odstęp wokół produktów */
+}
+</style>
+
+<!-- Dodaj Swiper JS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Pierwsza sekcja z autoplay
+  const swiperAutoplay = new Swiper('.autoplay-swiper', {
+    loop: true,
+    slidesPerView: 7, // Wyświetl 7 produktów jednocześnie
+    spaceBetween: 5, // Odstęp między slajdami
+    autoplay: {
+      delay: 4000, // Czas opóźnienia przed przejściem do kolejnego slajdu
+      disableOnInteraction: false, // Pozwala na kontynuowanie po interakcji użytkownika
+    },
+    breakpoints: {
+      320: { slidesPerView: 2 }, // Na małych ekranach
+      768: { slidesPerView: 4 }, // Na średnich ekranach
+      1024: { slidesPerView: 5 }, // Na dużych ekranach
+      1440: { slidesPerView: 7 }, // Na bardzo dużych ekranach
+    }
+  });
+
+  // Druga i trzecia sekcja bez autoplay
+  const swiperNoAutoplay = new Swiper('.no-autoplay-swiper', {
+    loop: true,
+    slidesPerView: 7, // Wyświetl 7 produktów jednocześnie
+    spaceBetween: 5, // Odstęp między slajdami
+    breakpoints: {
+      320: { slidesPerView: 2 }, // Na małych ekranach
+      768: { slidesPerView: 4 }, // Na średnich ekranach
+      1024: { slidesPerView: 5 }, // Na dużych ekranach
+      1440: { slidesPerView: 7 }, // Na bardzo dużych ekranach
+    }
+  });
+
+  // Obsługa kliknięć na elementy "TOP 7 OSTATNIEJ DOSTAWY", "NOWOŚCI", "PROMOCJA"
+  const titleItems = document.querySelectorAll('.products-section-title-item');
+
+  titleItems.forEach(item => {
+    item.addEventListener('click', function() {
+      // Usuń klasę 'active' z wszystkich elementów
+      titleItems.forEach(i => i.classList.remove('active'));
+      // Dodaj klasę 'active' do klikniętego elementu
+      item.classList.add('active');
+    });
+  });
+});
+
+
+</script>
