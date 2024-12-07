@@ -215,6 +215,21 @@
     display: block;
 }
 
+#menu-bar{
+    height: 100%;
+}
+
+
+
+.menu{
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.menu-item{
+    height: 100%;
+}
+
 .main-header .header-row {
     display: flex;
     align-items: center;

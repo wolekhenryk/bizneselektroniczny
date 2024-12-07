@@ -28,21 +28,24 @@
         </div>
       </div>
     </div>
+      <div id="thin-bar"></div>
+
   </div>
 
-  <div id="thin-bar"></div>
 {/if}
 
 <style>
   /* Ogólne style paska pod sliderem */
   .below-slider-bar {
     font-family: "Caveat Brush", cursive;
-    background-color: #103f5b;
+    background-color: #1f435d;
     padding-top: 10px;
-    padding-bottom: 10px;
+    padding-bottom: 0;
     padding-left: 5px;
     padding-right: 5px;
   }
+
+
 
   /* Styl dla równej linii elementów */
   .below-slider-bar .row {
@@ -150,7 +153,8 @@
   padding: 10px 0;
   margin: 0 0;
   width: 100%;
-  background: rgba(2, 41, 68, 0.8)
+  background: #2D4C61;
+  margin-top: 10px;
 }
 
 #below-slider{

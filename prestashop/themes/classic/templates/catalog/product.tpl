@@ -66,6 +66,15 @@
   width: 45%;
 }
 
+ .qty {
+    margin-right: 0 !important;
+}
+
+.add-to-cart {
+    height: auto !important;
+    padding-top: 0 !important;
+}
+
 .product-info-container{
         width: 29%;
 }
@@ -224,6 +233,34 @@ table.table td {
 
 #wrapper {
     background: transparent !important;
+}
+
+.last-images{
+display:flex;
+justify-content: space-between;
+  width:45%;
+  margin: 35px auto;
+      margin-bottom: 60px;
+
+}
+
+.last-images img{
+  width: 150px;
+  height: 230px;
+}
+
+.last-label{
+  text-align: ceneter;
+  color: #032944;
+    font-family: 'Caveat Brush', cursive;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0;
+      margin: 35px 0;
 }
 
 </style>
@@ -461,6 +498,18 @@ table.table td {
             </table>
         </div>
 
+          <div class="last-label">
+          Ostatnio oglądane
+          </div>
+
+          <div class="last-images">
+            <img src="/themes/classic/assets/img/1.jpg" alt="" width="auto" height="auto">
+            <img src="/themes/classic/assets/img/2.jpg" alt="" width="auto" height="auto">
+            <img src="/themes/classic/assets/img/3.jpg" alt="" width="auto" height="auto">
+            <img src="/themes/classic/assets/img/4.jpg" alt="" width="auto" height="auto">
+            <img src="/themes/classic/assets/img/5.jpg" alt="" width="auto" height="auto">
+          </div>
+
     <div class="bottom-footer-conta">
                <div class="box resetcss box_custom" id="bottom-banners">
                  <div class="g-row">
@@ -486,6 +535,8 @@ table.table td {
       </footer>
     {/block}
   </section>
+
+
 
    <script>
         // Pobierz wszystkie gwiazdki

@@ -109,20 +109,18 @@
  
        <!-- Druga linia -->
        <div class="row header-row" id="r2">
-         <div class="col-12">
+         <div class="col-12" id="menu-bar">
            <nav class="menu d-flex justify-content-between align-items-center">
              <div class="menu-item">
                <a href="#" style="color:#fff">PREZENT<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
               <a href="#" style="color:#fff">24H<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
@@ -133,45 +131,43 @@
                </div>
              </div>
              <div class="menu-item">
-               <a href="#" style="color:#fff">ZESZYTÓWKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="https://localhost:8080/20-zeszyty" style="color:#fff">ZESZYTÓWKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+                 <a href="https://localhost:8080/21-dc">ZESZYTY DC</a>
+                 <a href="https://localhost:8080/22-image">ZESZYTY IMAGE</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#" style="color:#fff">KOMIKSY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="https://localhost:8080/14-serie" style="color:#fff">SERIE<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+                 <a href="https://localhost:8080/15-komiksy-cyberpunk">KOMIKSY CYBERPUNK</a>
+                 <a href="https://localhost:8080/16-komiksy-fortnite">KOMIKKSY FORTNITE</a>
                </div>
              </div>
              <div class="menu-item">
                <a href="#" style="color:#fff">MANGI I NOWELKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
                <a href="#" style="color:#fff">DLA KOLEKCJONERA<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
-               <a href="#" style="color:#fff">PREORDERY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="https://localhost:8080/10-gatunki" style="color:#fff">GATUNKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
-                   <a href="#">Opcja 1</a>
-                   <a href="#">Opcja 2</a>
+                   <a href="https://localhost:8080/12-komiksy-dla-dzieciF">KOMIKSY DLA DZIECI</a>
+                   <a href="https://localhost:8080/11-komiksy-dla-doroslych">KOMIKSY DLA DOROSŁYCH</a>
+                    <a href="https://localhost:8080/13-komiksy-serialowe">KOMIKSY SERIALOWE</a>
                  </div>
              </div>
              <div class="menu-item">
                <a href="#" style="color:#fff">NOWOŚCI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
-                   <a href="#">Opcja 1</a>
-                   <a href="#">Opcja 3</a>
+
                  </div>
              </div>
            </nav>

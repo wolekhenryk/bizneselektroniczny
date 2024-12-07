@@ -23,12 +23,36 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
  
+<div id="custom-filter-wrapper">
+    <div id="custom-filter-container">
+        <span id="options-label">OPCJE PRZEGLĄDANIA</span>
+        <div id="inner-box">
+            <div class="multiselect">
+                <span class="filter-label">Producent: (wybierz)</span>
+            </div>
+            <div class="multiselect">
+                <span class="filter-label">Dostępność: (wybierz)</span>
+            </div>
+            <div class="multiselect">
+                <span class="filter-label">Wysyłka w: (wybierz)</span>
+            </div>
+            <div class="multiselect">
+                <span class="filter-label">Cena: (wybierz)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="products-container">
+
 <div id="js-product-list-header">
     {if $listing.pagination.items_shown_from == 1}
         <div class="block-category card card-block">
             <h1 class="h1" id="category-name">{$category.name}</h1>
         </div>
     {/if}
+</div>
+
 </div>
 
   <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
@@ -49,8 +73,143 @@
      font-style: normal;
    }
 
+#inner-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.multiselect{
+    margin: 15px 0 0 0;
+    border-radius: 4px;
+    border: 1px solid #e1e1e1;
+    color: #032944;
+    cursor: pointer;
+    width: 32%;
+    line-height: 40px;
+}
+
+.custom-thumbnail {
+    width: 80px !important;
+    height: 115px !important;
+}
+
+.filter-label{
+    color: #022944;
+    font-size: 16px;
+    line-height: 18px;
+    padding: 0 1em;
+    font-family: "Blogger Sans Regular", sans-serif;
+
+}
+
+.product-description-container{
+  display:flex;
+}
+
+.product-description{
+  display:flex;
+}
+
+#options-label{
+    color: #022944;
+    font-family: "Blogger Sans Medium", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#custom-filter-wrapper{
+    background-color: #fff;
+
+}
+
+#custom-filter-container{
+    padding: 15px 0;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    width: 62.5%;
+}
+
+.products{
+    flex-wrap: no-wrap;
+    flex-direction: column;
+}
+.js-product {
+width:100%;
+background: #fff;
+margin: 5px 15px;
+padding: 0 0;
+border-radius: 5px;
+}
+
+.product-miniature{
+    justify-content: normal;
+    width: 100%
+}
+
+.thumbnail-container{
+    width: 100%;
+    background: transparent !important;
+}
+
+.product-price-and-shipping{
+    margin-top: 10px;
+    margin-right: 30px
+}
+
+.product-description-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.price-cart-container{
+    display: flex;
+    align-item:center;
+    margin-right: 40px;
+}
+
+.product-description{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    margin-top: 37px;
+    font-family: "Blogger Sans Regular";
+    }
+
 .slider-container{
     display: none;
+}
+
+.add-to-cart{
+    width: 125px;
+    height: 38px;
+    border-radius: 3px;
+    border: 2px solid #119ee1;
+    background: transparent;
+    color: #119ee1;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.product-title a{
+    color: #022944 !important;
+    font-size: 18px !important;
+    font-weight: 300 !important;
+    line-height: 18px !important;
+}
+
+.addtobasket:hover {
+    background: #119ee1;
+    color: #fff;
+    -o-transition: all .5s ease;
+    transition: all .5s ease;
 }
 
 #category-name{
@@ -84,8 +243,16 @@ font-family: 'Caveat Brush', cursive;
 #content-wrapper{
     padding: 0 0;
     margin: 0 auto;
-    width: 62.5%;
+    width: 100%;
     float: none;
+}
+
+
+#products{
+    width: 62.5%;
+    margin: 0 auto;
+    padding: 0 0;
+
 }
 
 #left-column{
@@ -161,18 +328,17 @@ border: none;
 
 #category-name{
     position: absolute;
-    width: 50%;
-    margin-top: 10px
+    width: 18.75%;
+    margin-top: 25px;
+    margin-left: 18.75%;
 }
 
  .products-selection{
     display: flex;
     justify-content: flex-end;
+    margin-top: 20px;
  }
 
- #products{
-    width: 100%;
- }
 
  #js-product-list{
     margin-top: 50px;
