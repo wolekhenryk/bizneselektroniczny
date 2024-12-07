@@ -153,9 +153,12 @@ section {
     width: auto;
     padding: 10px; /* Odstęp wokół produktów */
 }
+
+.breadcrumb-wrapper{
+  display: none;
+}
 </style>
 
-<!-- Dodaj Swiper JS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -203,6 +206,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
 
 
 </script>

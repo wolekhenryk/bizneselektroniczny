@@ -393,9 +393,13 @@ i {
 }
 
 
-  body {
-    background: url('site-background_min.jpg') no-repeat #ebebeb;
+  main {
+    background: url('site-background_min.jpg') no-repeat;
 
     background-position: 0 630px;
     background-size: cover;
+    
 }
+
+
+

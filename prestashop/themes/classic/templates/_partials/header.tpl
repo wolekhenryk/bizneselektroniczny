@@ -66,7 +66,7 @@
        <div class="top-bar-right">
          <a href="#">ZAREJESTRUJ SIĘ</a>
          <span class="separator">:</span>
-         <a href="#">ZALOGUJ SIĘ</a>
+         <a href="https://localhost:8080/admin123">ZALOGUJ SIĘ</a>
        </div>
      </div>
    </div>
@@ -100,7 +100,7 @@
          <!-- Koszyk -->
          <div class="col-md-3 d-flex justify-content-end align-items-center">
            <div class="cart-info">
-             <a href="{$urls.pages.cart}">
+             <a href="{$urls.pages.cart}" style="color:#fff">
                <img src="{$base_dir}/themes/classic/assets/img/basket_ico.png" alt="Najnowsza dostawa"> <span class="cart-count">0</span> 0,00 zł
              </a>
            </div>
@@ -112,63 +112,63 @@
          <div class="col-12">
            <nav class="menu d-flex justify-content-between align-items-center">
              <div class="menu-item">
-               <a href="#">PREZENT<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="#" style="color:#fff">PREZENT<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-              <a href="#">24H<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+              <a href="#" style="color:#fff">24H<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">WYDANIA ZBIORCZE<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="https://localhost:8080/17-wydania-zbiorcze" style="color:#fff">WYDANIA ZBIORCZE<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <div class="dropdown">
+                 <a href="https://localhost:8080/18-dc">KOMIKSY DC</a>
+                 <a href="https://localhost:8080/19-marvel">KOMIKSY MARVEL</a>
+               </div>
+             </div>
+             <div class="menu-item">
+               <a href="#" style="color:#fff">ZESZYTÓWKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">ZESZYTÓWKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="#" style="color:#fff">KOMIKSY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">KOMIKSY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="#" style="color:#fff">MANGI I NOWELKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">MANGI I NOWELKI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="#" style="color:#fff">DLA KOLEKCJONERA<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
                  <a href="#">Opcja 1</a>
                  <a href="#">Opcja 2</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">DLA KOLEKCJONERA<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
-               <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
-               </div>
-             </div>
-             <div class="menu-item">
-               <a href="#">PREORDERY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="#" style="color:#fff">PREORDERY<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
                    <a href="#">Opcja 1</a>
                    <a href="#">Opcja 2</a>
                  </div>
              </div>
              <div class="menu-item">
-               <a href="#">NOWOŚCI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
+               <a href="#" style="color:#fff">NOWOŚCI<img src="{$base_dir}/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
                    <a href="#">Opcja 1</a>
                    <a href="#">Opcja 3</a>
