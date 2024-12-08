@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2024-12-05 17:48:06
+/* Smarty version 3.1.48, created on 2024-12-08 15:30:04
   from '/var/www/html/themes/classic/templates/_partials/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_6751d946d32c59_77095608',
+  'unifunc' => 'content_6755ad6ce31872_30762510',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e6eead84a7a0713719d5b8566271288962cc960f' => 
     array (
       0 => '/var/www/html/themes/classic/templates/_partials/header.tpl',
-      1 => 1733401558,
+      1 => 1733659457,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6751d946d32c59_77095608 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6755ad6ce31872_30762510 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, false);
 ?>
@@ -32,15 +32,27 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, false);
  
  
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_13911686316751d946cf5dd5_61457256', 'header_banner');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_16939171196755ad6ce2f7b7_24178336', 'header_banner');
 ?>
 
  
  <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4296987376751d946cf6713_43149786', 'header');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14689739406755ad6ce2fc23_89711944', 'header');
 ?>
 
- 
+
+<div class="slider-container">
+  <div class="slider">
+      <img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image1.jpg" alt="Image 1">
+      <img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image3.jpg" alt="Image 2">
+      <img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image2.jpg" alt="Image 3">
+      <img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image4.jpg" alt="Image 4">
+  </div>
+</div>
  
  <style>
    @font-face {
@@ -60,12 +72,12 @@ $_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_4296987376751d946c
    }
  </style><?php }
 /* {block 'header_banner'} */
-class Block_13911686316751d946cf5dd5_61457256 extends Smarty_Internal_Block
+class Block_16939171196755ad6ce2f7b7_24178336 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header_banner' => 
   array (
-    0 => 'Block_13911686316751d946cf5dd5_61457256',
+    0 => 'Block_16939171196755ad6ce2f7b7_24178336',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -80,21 +92,19 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'header_banner'} */
 /* {block 'header'} */
-class Block_4296987376751d946cf6713_43149786 extends Smarty_Internal_Block
+class Block_14689739406755ad6ce2fc23_89711944 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'header' => 
   array (
-    0 => 'Block_4296987376751d946cf6713_43149786',
+    0 => 'Block_14689739406755ad6ce2fc23_89711944',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
  <header class="header">
-   <!-- Pasek promocyjny -->
- 
-   <!-- Pasek promocyjny -->
+  <div class="header-container">
    <div class="promo-bar">
      <div class="promo-content">
        <strong>Wielka promocja Black Week!</strong>
@@ -126,7 +136,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
        <!-- Grupa 1: Sekcja kontaktowa po lewej -->
        <div class="top-bar-left">
          <strong><a href="mailto:sklep@atomcomics.pl" class="email"><img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
-/themes/classic/assets/img/footer_ico_mail.png" alt="Najnowsza dostawa"> SKLEP@ATOMCOMICT.PL</a></strong>
+/themes/classic/assets/img/footer_ico_mail.png" alt="Najnowsza dostawa"> SKLEP@ATOMCOMICS.PL</a></strong>
          <a href="tel:795441424" class="phone"><img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
 /themes/classic/assets/img/footer_ico_tel.png" alt="Najnowsza dostawa"> 795 441 424</a>
        </div>
@@ -146,7 +156,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
        <div class="top-bar-right">
          <a href="#">ZAREJESTRUJ SIĘ</a>
          <span class="separator">:</span>
-         <a href="#">ZALOGUJ SIĘ</a>
+         <a href="https://localhost:8080/admin123">ZALOGUJ SIĘ</a>
        </div>
      </div>
    </div>
@@ -155,7 +165,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
    <div class="main-header">
      <div class="container custom-container">
        <!-- Pierwsza linia -->
-       <div class="row header-row align-items-center py-2">
+       <div class="row header-row align-items-center py-2" id="r1">
          <!-- Logo -->
          <div class="col-md-2" id="_desktop_logo">
            <?php if ($_smarty_tpl->tpl_vars['shop']->value['logo_details']) {?>
@@ -184,7 +194,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
          <div class="col-md-3 d-flex justify-content-end align-items-center">
            <div class="cart-info">
              <a href="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['urls']->value['pages']['cart'], ENT_QUOTES, 'UTF-8');?>
-">
+" style="color:#fff">
                <img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
 /themes/classic/assets/img/basket_ico.png" alt="Najnowsza dostawa"> <span class="cart-count">0</span> 0,00 zł
              </a>
@@ -193,70 +203,75 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
        </div>
  
        <!-- Druga linia -->
-       <div class="row header-row">
-         <div class="col-12">
+       <div class="row header-row" id="r2">
+         <div class="col-12" id="menu-bar">
            <nav class="menu d-flex justify-content-between align-items-center">
              <div class="menu-item">
-               <a href="#">PREZENT <span class="arrow">⬇</span></a>
+               <a href="#" style="color:#fff">PREZENT<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">24H <span class="arrow">⬇</span></a>
+              <a href="#" style="color:#fff">24H<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">WYDANIA ZBIORCZE <span class="arrow">⬇</span></a>
+               <a href="https://localhost:8080/17-wydania-zbiorcze" style="color:#fff">WYDANIA ZBIORCZE<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+                 <a href="https://localhost:8080/18-dc">KOMIKSY DC</a>
+                 <a href="https://localhost:8080/19-marvel">KOMIKSY MARVEL</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">ZESZYTÓWKI <span class="arrow">⬇</span></a>
+               <a href="https://localhost:8080/20-zeszyty" style="color:#fff">ZESZYTÓWKI<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+                 <a href="https://localhost:8080/21-dc">ZESZYTY DC</a>
+                 <a href="https://localhost:8080/22-image">ZESZYTY IMAGE</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">KOMIKSY <span class="arrow">⬇</span></a>
+               <a href="https://localhost:8080/14-serie" style="color:#fff">SERIE<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+                 <a href="https://localhost:8080/15-komiksy-cyberpunk">KOMIKSY CYBERPUNK</a>
+                 <a href="https://localhost:8080/16-komiksy-fortnite">KOMIKKSY FORTNITE</a>
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">MANGI I NOWELKI <span class="arrow">⬇</span></a>
+               <a href="#" style="color:#fff">MANGI I NOWELKI<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">DLA KOLEKCJONERA <span class="arrow">⬇</span></a>
+               <a href="#" style="color:#fff">DLA KOLEKCJONERA<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                <div class="dropdown">
-                 <a href="#">Opcja 1</a>
-                 <a href="#">Opcja 2</a>
+
                </div>
              </div>
              <div class="menu-item">
-               <a href="#">PREORDERY <span class="arrow">⬇</span></a>
+               <a href="https://localhost:8080/10-gatunki" style="color:#fff">GATUNKI<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
-                   <a href="#">Opcja 1</a>
-                   <a href="#">Opcja 2</a>
+                   <a href="https://localhost:8080/12-komiksy-dla-dzieciF">KOMIKSY DLA DZIECI</a>
+                   <a href="https://localhost:8080/11-komiksy-dla-doroslych">KOMIKSY DLA DOROSŁYCH</a>
+                    <a href="https://localhost:8080/13-komiksy-serialowe">KOMIKSY SERIALOWE</a>
                  </div>
              </div>
              <div class="menu-item">
-               <a href="#">NOWOŚCI <span class="arrow">⬇</span></a>
+               <a href="#" style="color:#fff">NOWOŚCI<img src="<?php echo htmlspecialchars($_smarty_tpl->tpl_vars['base_dir']->value, ENT_QUOTES, 'UTF-8');?>
+/themes/classic/assets/img/image.png" style="width: 10px;"/></a>
                  <div class="dropdown">
-                   <a href="#">Opcja 1</a>
-                   <a href="#">Opcja 2</a>
+
                  </div>
              </div>
            </nav>
@@ -264,8 +279,10 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
        </div>
      </div>
    </div>
+  </div>
  </header>
- <?php
+</div>
+<?php
 }
 }
 /* {/block 'header'} */
