@@ -62,7 +62,7 @@ Password: admin123
 
 Insert line "platform: linux/x86_64" under msql section
 
-![docker](image path)
+![docker](images/docker_compose.jpg)
 
 ### What scripts can I run?
 
@@ -87,3 +87,12 @@ Insert line "platform: linux/x86_64" under msql section
 * Scraper
   * Code meant to scrap products data from a target webiste
   * Open project solution in Visual Studio and run Program.cs
+ 
+* Selenium Tests: bizneselektroniczny/test/selenium.py
+  * Script meant to test functionalities of our shop
+  * Firstly install selenium
+    
+  ```powershell
+    pip install prestapyt
+  ```
+  * Then, run the python script
