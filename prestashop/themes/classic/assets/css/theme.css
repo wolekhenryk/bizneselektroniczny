@@ -3326,7 +3326,7 @@ tbody.collapse.in {
     display: block;
     margin-bottom: 0.75rem;
     background-color: #fff;
-    border-radius: 0;
+    border-radius: 4px;
     border: 1px solid rgba(0, 0, 0, 0.125)
     }
 .card-block {

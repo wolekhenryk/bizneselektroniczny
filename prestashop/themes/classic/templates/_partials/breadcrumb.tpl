@@ -102,4 +102,9 @@
 body{
   background-color: #fff !important;
 }
+
+.breadcrumb-wrapper{
+  background-color: #fff;
+}
+
 </style>

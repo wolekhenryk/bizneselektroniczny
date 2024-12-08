@@ -215,6 +215,21 @@
     display: block;
 }
 
+#menu-bar{
+    height: 100%;
+}
+
+
+
+.menu{
+    height: 100%;
+    padding-bottom: 0;
+}
+
+.menu-item{
+    height: 100%;
+}
+
 .main-header .header-row {
     display: flex;
     align-items: center;
@@ -393,9 +408,13 @@ i {
 }
 
 
-  body {
-    background: url('site-background_min.jpg') no-repeat #ebebeb;
+  main {
+    background: url('site-background_min.jpg') no-repeat;
 
     background-position: 0 630px;
     background-size: cover;
+    
 }
+
+
+

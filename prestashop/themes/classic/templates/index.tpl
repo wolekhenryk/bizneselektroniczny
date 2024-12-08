@@ -130,6 +130,10 @@
           .f-grid-62 {
             margin-left: 33px;
           }
+
+          body {
+              overflow-x: hidden;
+          }
           
          </style>
  
