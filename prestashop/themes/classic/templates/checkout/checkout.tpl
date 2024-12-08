@@ -31,6 +31,11 @@
 {block name='content'}
   <section id="content">
     <div class="row">
+      <style>
+        .cart-grid-body {
+          padding-top: 1.5rem;
+        }
+      </style>
       <div class="cart-grid-body col-xs-12 col-lg-8">
         {block name='checkout_process'}
           {render file='checkout/checkout-process.tpl' ui=$checkout_process}
@@ -40,7 +45,6 @@
         {block name='cart_summary'}
           {include file='checkout/_partials/cart-summary.tpl' cart=$cart}
         {/block}
-        {hook h='displayReassurance'}
       </div>
     </div>
   </section>

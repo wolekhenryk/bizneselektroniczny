@@ -24,22 +24,64 @@
  *}
 {extends file='checkout/cart.tpl'}
 
-{block name='content' append}
-  {hook h='displayCrossSellingShoppingCart'}
-{/block}
+{block name='content'}
+  <style>
+    #main {
+      position: relative;
+    }
+    
+    .cart-grid row {
+      display: flex;
+      flex-direction: row;
+      margin: auto;
+      width: 62.5%;
+    }
+  </style>
+  <section id="main">
+    <div class="cart-grid row">
+      <style>
+        .cart-grid-body2 {
+          width: 100%;
+        }
+      </style>
+      <!-- Left Block -->
+      <div class="cart-grid-body2">
+          {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
+          {if $cart.products|@count > 0}
+            <!-- Produkty koszyka -->
+            {block name='cart_overview'}
+              {include file='checkout/_partials/cart-detailed.tpl' cart=$cart}
+            {/block}
+          {/if}
+        </div>
 
-{block name='continue_shopping' append}
-  <a class="label" href="{$urls.pages.index}">
-    <i class="material-icons">chevron_left</i>{l s='Continue shopping' d='Shop.Theme.Actions'}
-  </a>
-{/block}
+        <!-- Hook dla koszyka (opcjonalny) -->
+        {block name='hook_shopping_cart_footer'}
+          {hook h='displayShoppingCartFooter'}
+        {/block}
+      </div>
 
-{block name='cart_actions'}
-  <div class="checkout text-sm-center card-block">
-    <button type="button" class="btn btn-primary disabled" disabled>{l s='Checkout' d='Shop.Theme.Actions'}</button>
-  </div>
-{/block}
+      <!-- Prawy blok: tylko gdy koszyk nie jest pusty -->
+      {if $cart.products|@count > 0}
+      <div class="cart-grid-right col-xs-12 col-lg-4">
+        {block name='cart_summary'}
+          <div class="card cart-summary">
+            {block name='hook_shopping_cart'}
+              {hook h='displayShoppingCart'}
+            {/block}
 
-{block name='continue_shopping'}{/block}
-{block name='cart_voucher'}{/block}
-{block name='display_reassurance'}{/block}
+            {block name='cart_totals'}
+              {include file='checkout/_partials/cart-detailed-totals.tpl' cart=$cart}
+            {/block}
+
+            {block name='cart_actions'}
+              {include file='checkout/_partials/cart-detailed-actions.tpl' cart=$cart}
+            {/block}
+          </div>
+        {/block}
+      </div>
+      {/if}
+
+    </div>
+  </section>
+{/block}

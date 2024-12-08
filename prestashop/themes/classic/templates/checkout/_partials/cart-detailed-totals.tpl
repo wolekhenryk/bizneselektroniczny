@@ -29,7 +29,7 @@
     {foreach from=$cart.subtotals item="subtotal"}
       {if $subtotal && $subtotal.value|count_characters > 0 && $subtotal.type !== 'tax'}
         <div class="cart-summary-line" id="cart-subtotal-{$subtotal.type}">
-          <span class="label{if 'products' === $subtotal.type} js-subtotal{/if}">
+          <span class="label{if 'products' === $subtotal.type} js-subtotal{/if}" style="transform: uppearcase;">
             {if 'products' == $subtotal.type}
               {$cart.summary_string}
             {else}
