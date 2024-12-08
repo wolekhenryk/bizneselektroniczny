@@ -23,21 +23,51 @@
  * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
  *}
 {block name='cart_detailed_actions'}
-  <div class="checkout cart-detailed-actions js-cart-detailed-actions card-block">
+  <style>
+    .custom-btn {
+      background-color: #f3f3f3;
+      color: #000;            
+      border-radius: 4px;   
+      padding: 10px 30px;     
+      font-size: 14px;       
+      text-transform: uppercase; 
+      font-weight: 700;
+      font-family: "Blogger-Sans Regular", sans-serif;
+      border: none;
+      margin-right: 36px;
+      margin-bottom: 30px;
+    }
+
+    .my-btn:hover {
+      background-color: #cdcdcd; 
+      text-decoration: none;    
+    }
+    
+    .text-sm-right1 button {
+      margin-right: 10px;
+    }
+
+  </style>
+  <div class="checkout1">
     {if $cart.minimalPurchaseRequired}
       <div class="alert alert-warning" role="alert">
         {$cart.minimalPurchaseRequired}
       </div>
       <div class="text-sm-center">
-        <button type="button" class="btn btn-primary disabled" disabled>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</button>
+        <button type="button" class="btn btn-primary disabled" disabled>{l s='Zamawiam' d='Shop.Theme.Actions'}</button>
       </div>
     {elseif empty($cart.products) }
       <div class="text-sm-center">
-        <button type="button" class="btn btn-primary disabled" disabled>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</button>
+        <button type="button" class="btn btn-primary disabled" disabled>{l s='Zamawiam' d='Shop.Theme.Actions'}</button>
       </div>
     {else}
-      <div class="text-sm-center">
-        <a href="{$urls.pages.order}" class="btn btn-primary">{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+      <div class="text-sm-right1">
+
+        <a href="{$urls.pages.order}">
+          <button type="submit" class="my-btn btn-gray radius upper" name="button2" value="button2">
+            <span>{l s='Zamawiam' d='Shop.Theme.Actions'}</span>
+          </button>
+        </a>
         {hook h='displayExpressCheckout'}
       </div>
     {/if}
