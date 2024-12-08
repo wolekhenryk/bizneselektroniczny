@@ -72,6 +72,95 @@
      font-style: normal;
    }
 
+
+
+
+ .custom-thumbnail {
+    width: 150px ;
+    height: 230px ;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+.product-description-container {
+  position: relative;
+  width: 150px; /* Dopasuj do rozmiaru zdjęcia */
+  height: 250px; /* Dopasuj do rozmiaru zdjęcia */
+}
+
+.product-description {
+  display: block;
+}
+
+
+
+.product-description-container:hover .product-description {
+  display:block;
+}
+
+  .btn-primary {
+    width: 125px;
+    height: 32px;
+    border-radius: 3px;
+    background-color: #119ee1;
+    padding: 0;
+    border: 0 !important;
+    line-height: 1;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0a87c4;
+  }
+
+  .swiper-wrapper{
+    box-sizing: inherit !important;
+  }
+
+  .swiper-slide {
+     padding: 5px !important;
+  }
+
+  .product-add-to-cart {
+  display: flex;
+  justify-content: center; /* Wyśrodkowanie poziome */
+  align-items: center;    /* Wyśrodkowanie pionowe, jeśli konieczne */
+  margin-top: 10px;       /* Opcjonalnie: odstęp od góry */
+}
+
+
+
+
+
+
+   .product-description {
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-family: 'Blogger Sans Regular', sans-serif;
+
+  position: absolute !important;
+    display: none;
+    bottom: -20px;
+    background: #ffffff;
+    z-index: 1;
+    width: 100%;
+    text-align: left;
+    padding: 20px 10px;
+    border-radius: 3px;
+
+}
+
+     .custom-thumbnail {
+    width: 150px !important;
+    height: 230px !important;
+     }
+
 .super-banner img:nth-child(2) {
     margin-top: 5px;
 }
@@ -153,9 +242,12 @@ section {
     width: auto;
     padding: 10px; /* Odstęp wokół produktów */
 }
+
+.breadcrumb-wrapper{
+  display: none;
+}
 </style>
 
-<!-- Dodaj Swiper JS -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
@@ -203,6 +295,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 });
+
 
 
 </script>
