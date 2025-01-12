@@ -1,6 +1,6 @@
 services:
   memcache:
-    container_name: memcached
+    container_name: PS_193165_memcache
     image: memcached
     user: 1000:1000
     deploy:
@@ -17,7 +17,7 @@ services:
       - ps_cache_net
 
   prestashop:
-    container_name: prestashop
+    container_name: PS_193165
     image: henrykwolek/my-prestashop:latest
     restart: unless-stopped
     ports:
