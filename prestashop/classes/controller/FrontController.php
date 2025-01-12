@@ -302,6 +302,11 @@ class FrontControllerCore extends Controller
 
         parent::init();
 
+        $this->context->smarty->assign([
+            'base_dir' => __PS_BASE_URI__,
+            'theme_assets' => _THEME_DIR_, // Assign theme assets directory
+        ]);
+
         // enable Symfony error handler if debug mode enabled
         $this->initDebugguer();
 
