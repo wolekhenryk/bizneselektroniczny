@@ -6,7 +6,7 @@ MYSQL_USER="root"
 MYSQL_PASSWORD="student"
 MYSQL_DATABASE="BE_193165"
 
-SQL_DUMP_FILE="../db_init/ps_db.sql"
+SQL_DUMP_FILE="/db_init/presta_init.sql"
 
 echo "Tworze db"
 mysql -h"$MYSQL_HOST" -P"$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};"
@@ -14,16 +14,12 @@ mysql -h"$MYSQL_HOST" -P"$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "CR
 echo "Seeduje db"
 mysql -h"$MYSQL_HOST" -P"$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" < "$SQL_DUMP_FILE"
 
-echo "Usuwam foldery"
+echo "Usuwam katalogi"
 if [ -d "install" ]; then
     rm -rf install
 fi
 
-if [ -d "config" ]; then
-    rm -rf config
-fi
+echo "Inizjalizacja zakonczona"
 
-echo "Uruchamianie zakonczona"
-
-echo "Server Started"
+echo "Server Start"
 exec apache2-foreground
