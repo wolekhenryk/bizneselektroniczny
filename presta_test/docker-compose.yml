@@ -1,0 +1,42 @@
+services:
+  memcache:
+    container_name: memcached
+    image: memcached
+    user: 1000:1000
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 2
+        window: 140s
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+    networks:
+      - prestashop_atom
+  
+  prestashop:
+      container_name: prestashop
+      image: mypresta:latest
+      restart: unless-stopped
+      ports:
+        - 8080:80
+        - 443:443
+      environment:
+        ADMIN_MAIL: admin@prestashop.com 
+        ADMIN_PASSWD: admin123
+        DB_SERVER: admin-mysql_default
+        DB_NAME: BE_193165
+        DB_USER: root
+        DB_PASSWD: student
+        PS_INSTALL_AUTO: 1
+        PS_DOMAIN: localhost
+        PS_FOLDER_ADMIN: admin123
+      networks:
+        - admin-mysql_default
+
+networks:
+  prestashop_atom:
+  admin-mysql_default:
+    external: true
