@@ -14,32 +14,31 @@ services:
           cpus: '0.5'
           memory: 256M
     networks:
-      - prestashop_atom
-  
+      - ps_cache_net
+
   prestashop:
-      container_name: prestashop
-      image: mypresta:latest
-      restart: unless-stopped
-      ports:
-        - 8080:80
-        - 443:443
-      environment:
-        PS_DEV_MODE: 1
-        ADMIN_MAIL: admin@prestashop.com 
-        ADMIN_PASSWD: admin123
-        DB_SERVER: admin-mysql_default
-        DB_USER: root
-        DB_NAME: BE_193165
-        DB_PASSWD: student
-        PS_INSTALL_AUTO: 1
-        PS_FOLDER_ADMIN: admin123
-        CACHE_SYSTEM: Memcached
-      networks:
-      - prestashop_atom
-      - admin-mysql_default
-      entrypoint: /init_mysql.sh
+    container_name: prestashop
+    image: henrykwolek/my-prestashop:latest
+    restart: unless-stopped
+    ports:
+      - 8080:80
+      - 443:443
+    environment:
+      PS_DEV_MODE: 1
+      ADMIN_MAIL: admin@prestashop.com 
+      ADMIN_PASSWD: admin123
+      DB_SERVER: admin-mysql_default
+      DB_USER: root
+      DB_NAME: BE_193165
+      DB_PASSWD: student
+      PS_INSTALL_AUTO: 1
+      PS_FOLDER_ADMIN: admin123
+      CACHE_SYSTEM: Memcached
+    networks:
+    - admin-mysql_default
+    entrypoint: /init_mysql.sh
 
 networks:
-  prestashop_atom:
+  ps_cache_net:
   admin-mysql_default:
     external: true
