@@ -4,13 +4,10 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: student
-      MYSQL_DATABASE: BE_193165  # Specify the default database to create
-    ports: 
-      - 3306:3306
+    ports:
+      - "3306:3306"
     networks:
       - admin-mysql_default
-    volumes:
-      - ./db_init:/docker-entrypoint-initdb.d
 
 networks:
   admin-mysql_default:

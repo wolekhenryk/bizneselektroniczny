@@ -5,7 +5,6 @@ RUN apt-get update && \
     pecl install memcached && \
     docker-php-ext-enable memcached
 
-
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
     -keyout /etc/ssl/certs/server.key \
     -out /etc/ssl/certs/server.crt \
