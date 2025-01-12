@@ -1,53 +1,43 @@
-version: '3'
 services:
-  mysql:
-    platform: linux/x86_64
-    container_name: ebiz-mysql
-    image: mysql:5.7
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: prestashop
+  memcache:
+    container_name: PS_193165_memcache
+    image: memcached
+    user: 1000:1000
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 2
+        window: 140s
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
     networks:
-      - prestashop_network
-    volumes:
-      - ./db_init:/docker-entrypoint-initdb.d
+      - ps_cache_net
 
   prestashop:
-    container_name: prestashop
-    image: prestashop/prestashop:1.7.8
+    container_name: PS_193165
+    image: henrykwolek/my-prestashop:latest
     restart: unless-stopped
-    depends_on:
-      - mysql
     ports:
-      - 8080:80
-      - 443:443
+      - 19316:80
     environment:
+      PS_DEV_MODE: 0
       ADMIN_MAIL: admin@prestashop.com 
       ADMIN_PASSWD: admin123
-      DB_SERVER: ebiz-mysql
-      DB_NAME: prestashop
+      DB_SERVER: admin-mysql_default
       DB_USER: root
-      DB_PASSWD: admin
+      DB_NAME: BE_193165
+      DB_PASSWD: student
       PS_INSTALL_AUTO: 1
-      PS_DOMAIN: localhost
       PS_FOLDER_ADMIN: admin123
+      CACHE_SYSTEM: Memcached
     networks:
-      - prestashop_network
-    volumes:
-      - ./prestashop:/var/www/html  # Dane PrestaShop, aby były trwałe
-      - ./ssl/ssl_key:/etc/ssl/private  # For SSL key
-      - ./ssl/ssl_certs:/etc/ssl/certs  # For SSL certificate
-      - ./ssl/config:/etc/apache2/sites-available  # For Apache configuration
-    command: >
-      /bin/bash -c "
-      update-ca-certificates &&
-      a2enmod ssl &&
-      a2ensite 000-default.conf &&
-      apachectl -D FOREGROUND"
+    - admin-mysql_default
+    entrypoint: /init_mysql.sh
 
 networks:
-  prestashop_network:
-
-volumes:
-  prestashop:  # Wolumen na dane PrestaShop
+  ps_cache_net:
+  admin-mysql_default:
+    external: true
