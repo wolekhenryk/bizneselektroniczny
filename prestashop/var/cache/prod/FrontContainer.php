@@ -1949,7 +1949,7 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
      */
     protected function getDoctrine_Dbal_DefaultConnectionService()
     {
-        return $this->services['doctrine.dbal.default_connection'] = ${($_ = isset($this->services['doctrine.dbal.connection_factory']) ? $this->services['doctrine.dbal.connection_factory'] : ($this->services['doctrine.dbal.connection_factory'] = new \Doctrine\Bundle\DoctrineBundle\ConnectionFactory([]))) && false ?: '_'}->createConnection(['driver' => 'pdo_mysql', 'host' => 'ebiz-mysql', 'port' => '3306', 'dbname' => 'prestashop', 'user' => 'root', 'password' => 'admin', 'charset' => 'utf8mb4', 'driverOptions' => [1002 => 'SET sql_mode=(SELECT REPLACE(@@sql_mode,\'ONLY_FULL_GROUP_BY\',\'\'))', 1013 => $this->getEnv('const:runtime:_PS_ALLOW_MULTI_STATEMENTS_QUERIES_')], 'defaultTableOptions' => []], new \Doctrine\DBAL\Configuration(), new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), ['enum' => 'string']);
+        return $this->services['doctrine.dbal.default_connection'] = ${($_ = isset($this->services['doctrine.dbal.connection_factory']) ? $this->services['doctrine.dbal.connection_factory'] : ($this->services['doctrine.dbal.connection_factory'] = new \Doctrine\Bundle\DoctrineBundle\ConnectionFactory([]))) && false ?: '_'}->createConnection(['driver' => 'pdo_mysql', 'host' => 'admin-mysql_default', 'port' => '3306', 'dbname' => 'BE_193165', 'user' => 'root', 'password' => 'student', 'charset' => 'utf8mb4', 'driverOptions' => [1002 => 'SET sql_mode=(SELECT REPLACE(@@sql_mode,\'ONLY_FULL_GROUP_BY\',\'\'))', 1013 => $this->getEnv('const:runtime:_PS_ALLOW_MULTI_STATEMENTS_QUERIES_')], 'defaultTableOptions' => []], new \Doctrine\DBAL\Configuration(), new \Symfony\Bridge\Doctrine\ContainerAwareEventManager($this), ['enum' => 'string']);
     }
 
     /**
@@ -3120,11 +3120,11 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
     protected function getDefaultParameters()
     {
         return [
-            'database_host' => 'ebiz-mysql',
+            'database_host' => 'admin-mysql_default',
             'database_port' => '3306',
-            'database_name' => 'prestashop',
+            'database_name' => 'BE_193165',
             'database_user' => 'root',
-            'database_password' => 'admin',
+            'database_password' => 'student',
             'database_prefix' => 'ps_',
             'database_engine' => 'InnoDB',
             'mailer_transport' => 'smtp',
@@ -3325,6 +3325,11 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
             'doctrine.orm.auto_generate_proxy_classes' => false,
             'doctrine.orm.proxy_dir' => '/var/www/html/var/cache/prod//doctrine/orm/Proxies',
             'doctrine.orm.proxy_namespace' => 'Proxies',
+            'ps_eventbus.proxy_api_url' => 'https://eventbus-proxy.psessentials.net',
+            'ps_eventbus.sync_api_url' => 'https://eventbus-sync.psessentials.net',
+            'ps_eventbus.live_sync_api_url' => 'https://api.cloudsync.prestashop.com/live-sync/v1',
+            'ps_eventbus.sentry_dsn' => 'https://457f191226df4b8f9a0d7bf6f250bab2@o298402.ingest.sentry.io/6066714',
+            'ps_eventbus.sentry_env' => 'production',
             'ps_accounts.environment' => 'production',
             'ps_accounts.accounts_api_url' => 'https://accounts-api.distribution.prestashop.net/',
             'ps_accounts.accounts_ui_url' => 'https://accounts.distribution.prestashop.net',
@@ -3342,11 +3347,6 @@ class FrontContainer extends \PrestaShop\PrestaShop\Adapter\Container\LegacyCont
             'ps_accounts.svc_accounts_ui_url' => 'https://accounts.psessentials.net',
             'ps_accounts.oauth2_url' => 'https://oauth.prestashop.com',
             'ps_accounts.testimonials_url' => 'https://assets.prestashop3.com/dst/accounts/assets/testimonials.json',
-            'ps_eventbus.proxy_api_url' => 'https://eventbus-proxy.psessentials.net',
-            'ps_eventbus.sync_api_url' => 'https://eventbus-sync.psessentials.net',
-            'ps_eventbus.live_sync_api_url' => 'https://api.cloudsync.prestashop.com/live-sync/v1',
-            'ps_eventbus.sentry_dsn' => 'https://457f191226df4b8f9a0d7bf6f250bab2@o298402.ingest.sentry.io/6066714',
-            'ps_eventbus.sentry_env' => 'production',
         ];
     }
 }
