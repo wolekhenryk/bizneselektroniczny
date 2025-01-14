@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BiznesElektroniczny_scraper.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8bed803d1464f0b8ed8c45928f3f0bdb7e198e0d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+512295eeaca141d66b6f0209278ddd67ee2344ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("BiznesElektroniczny_scraper.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BiznesElektroniczny_scraper.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
