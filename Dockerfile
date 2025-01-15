@@ -28,9 +28,4 @@ RUN rm -rf /var/www/html/var/cache/* && \
     chown -R www-data:www-data /var/www/html && \
     chmod -R 777 /var/www/html 
 
-RUN apt-get update && \
-    apt-get install -y openssl libmemcached-dev zlib1g-dev && \
-    pecl install memcached && \
-    docker-php-ext-enable memcached
-
 RUN chmod +x /init_mysql.sh
