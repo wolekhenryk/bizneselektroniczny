@@ -37,7 +37,7 @@ class IndexControllerCore extends FrontController
         parent::initContent();
         $this->context->smarty->assign([
             'HOOK_HOME' => Hook::exec('displayHome'),
-            'base_dir' => __PS_BASE_URI__, // Add base directory
+            'base_dir' => 'https://localhost:19316', // Add base directory
         ]);
         $this->setTemplate('index');
     }
