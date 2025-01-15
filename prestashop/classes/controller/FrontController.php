@@ -304,7 +304,7 @@ class FrontControllerCore extends Controller
 
         $this->context->smarty->assign([
             'base_dir' => 'https://localhost:19316/',
-            'theme_assets' => "https://localhost:19316/themes/classic/", // Assign theme assets directory
+            'theme_assets' => "https://localhost:19316/themes/classic", // Assign theme assets directory
         ]);
 
         // enable Symfony error handler if debug mode enabled
