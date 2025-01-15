@@ -303,8 +303,8 @@ class FrontControllerCore extends Controller
         parent::init();
 
         $this->context->smarty->assign([
-            'base_dir' => __PS_BASE_URI__,
-            'theme_assets' => _THEME_DIR_, // Assign theme assets directory
+            'base_dir' => 'https://localhost:19316/',
+            'theme_assets' => "https://localhost:19316/themes/classic/", // Assign theme assets directory
         ]);
 
         // enable Symfony error handler if debug mode enabled
@@ -1531,7 +1531,7 @@ class FrontControllerCore extends Controller
 
             $urls['alternative_langs'] = $this->getAlternativeLangsUrl();
 
-            $urls['theme_assets'] = __PS_BASE_URI__ . 'themes/' . $this->context->shop->theme->getName() . '/assets/';
+            $urls['theme_assets'] = 'https://localhost:19316/' . 'themes/' . $this->context->shop->theme->getName() . '/assets/';
 
             $urls['actions'] = [
                 'logout' => $this->context->link->getPageLink('index', true, null, 'mylogout'),
