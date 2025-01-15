@@ -45,6 +45,7 @@ services:
       CACHE_SYSTEM: Memcached
     networks:
     - admin-mysql_default
+    - ps_cache_net
     entrypoint: /init_mysql.sh
 
 networks:
