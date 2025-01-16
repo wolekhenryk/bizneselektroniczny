@@ -6,7 +6,7 @@ MYSQL_USER="root"
 MYSQL_PASSWORD="student"
 MYSQL_DATABASE="BE_193165"
 
-SQL_DUMP_FILE="/db_init/presta_init.sql"
+SQL_DUMP_FILE="/db_init/ps_db.sql"
 
 echo "Tworze db"
 mysql -h"$MYSQL_HOST" -P"$MYSQL_PORT" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS ${MYSQL_DATABASE};"
