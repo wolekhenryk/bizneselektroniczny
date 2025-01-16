@@ -1,5 +1,5 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="{$theme_assets}/css/custom.css" type="text/css" media="all" />
+ <link rel="stylesheet" href="{$theme_assets}/assets/css/custom.css" type="text/css" media="all" />
 
 
 {if $homeslider.slides}
