@@ -4,7 +4,7 @@
   *}
  
  <link href="https://fonts.cdnfonts.com/css/blogger-sans" rel="stylesheet">
- <link rel="stylesheet" href="{$theme_assets}/css/custom.css" type="text/css" media="all" />
+ <link rel="stylesheet" href="{$theme_assets}/assets/css/custom.css" type="text/css" media="all" />
  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet" />
  
  
