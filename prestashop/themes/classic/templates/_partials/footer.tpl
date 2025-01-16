@@ -469,3 +469,20 @@
       </div>
    </div>
  </div>
+{if $page.page_name == 'index'}
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const banner = document.querySelector(".slider-container");
+    console.log("Dom loaded")
+    if (banner) {
+      banner.addEventListener('click', function(event) {
+        console.log("Event send")
+        gtag('event', 'b_click', {
+          'event_category': 'b_click',  // Kategoria zdarzenia
+          'event_label': banner.href  // Link baneru
+        });
+      });
+    }
+  });
+  </script>
+{/if}
