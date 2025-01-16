@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Konfiguracja dla backupu
-DB_HOST="ebiz-mysql"        # Host bazy danych (nazwa kontenera)
+DB_HOST="admin-mysql_db"        # Host bazy danych (nazwa kontenera)
 DB_USER="root"              # Nazwa użytkownika bazy danych
-DB_PASS="admin"             # Hasło do bazy danych
-DB_NAME="prestashop"        # Nazwa bazy danych do zrzutu
+DB_PASS="student"             # Hasło do bazy danych
+DB_NAME="BE_193165"        # Nazwa bazy danych do zrzutu
 
 # Ścieżka do zapisu pliku kopii zapasowej
 BACKUP_DIR="./db_init"       # Lokalizacja na hosta
@@ -23,7 +23,7 @@ else
     echo "Katalog kopii zapasowej jest pusty. Kontynuuję..."
 fi
 
-docker exec ebiz-mysql mysqldump -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" > "$BACKUP_FILE"
+docker exec "$DB_HOST" mysqldump -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" > "$BACKUP_FILE"
 
 # Sprawdzanie statusu operacji
 if [ $? -eq 0 ]; then
