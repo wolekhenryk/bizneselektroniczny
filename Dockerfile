@@ -26,6 +26,6 @@ COPY ./prestashop /var/www/html/
 
 RUN rm -rf /var/www/html/var/cache/* && \
     chown -R www-data:www-data /var/www/html && \
-    chmod -R 777 /var/www/html 
+    chmod -R 755 /var/www/html 
 
 RUN chmod +x /init_mysql.sh
